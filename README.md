@@ -62,10 +62,31 @@ tests/          데스크톱·모바일 고객 여정 검증
 docs/           승인 설계와 구현 계획
 ```
 
-실서비스 연결 시 `services/demo.ts`를 인증된 서버 어댑터로 교체하고 서버에서 가격·소유권·재고·결제 상태를 검증해야 합니다. App in Toss WebView SDK/TDS, 토스 로그인 코드 교환, 토스페이 준비·승인·조회·복구·환불 대사는 서버와 플랫폼 설정이 준비된 뒤 연결합니다. 프로덕션 개인정보 저장·암호화, 운영 어드민과 배포도 별도 후속 범위입니다.
+실서비스 연결 시 `services/demo.ts`를 인증된 서버 어댑터로 교체하고 서버에서 가격·소유권·재고·결제 상태를 검증해야 합니다. App in Toss WebView SDK/TDS, 토스 로그인 코드 교환, 토스페이 준비·승인·조회·복구·환불 대사는 서버와 플랫폼 설정이 준비된 뒤 연결합니다. 프로덕션 개인정보 저장·암호화와 운영 어드민도 별도 후속 범위입니다.
 
 ## 라우트
 
 `/`, `/products`, `/products/:code`, `/size-guide`, `/materials`, `/favorites`, `/checkout`, `/orders`, `/orders/:id`, `/support`, `/policies/:type`.
 
-정적 호스팅 시 존재하지 않는 파일 경로를 `index.html`로 보내는 SPA fallback 설정이 필요합니다. 현재는 로컬 Vite 서버가 직접 진입을 지원합니다.
+로컬 개발에서는 일반 URL 라우팅을 사용합니다. 다른 정적 호스팅에 기본 빌드를 배포한다면 존재하지 않는 파일 경로를 `index.html`로 보내는 SPA fallback 설정이 필요합니다.
+
+## GitHub Pages 배포
+
+공개 데모 주소: [https://casewingit.github.io/mekit/](https://casewingit.github.io/mekit/).
+
+GitHub 저장소의 Pages Source는 **Deploy from a branch**, 게시 브랜치는 **gh-pages / (root)**입니다. 빌드 결과와 `.nojekyll`을 별도 게시 브랜치에 올리며 소스는 `main`에서 관리합니다. 현재 GitHub 인증에 `workflow` 권한이 없어 사용자 정의 Actions 대신 브랜치 게시를 사용합니다.
+
+업데이트를 배포하려면 다음 명령을 실행합니다. 단위 테스트와 Pages 빌드가 성공한 뒤 임시 체크아웃에서 게시 브랜치를 갱신하고, GitHub가 해당 결과를 자동 게시합니다. Git 인증과 커밋 사용자 설정이 필요합니다. `main`만 푸시하면 공개 사이트는 갱신되지 않습니다.
+
+```sh
+npm run deploy:pages
+```
+
+Pages 빌드는 `/mekit/` 경로와 해시 라우팅을 사용해 제품 상세 등에서 새로고침해도 열립니다. 예: `https://casewingit.github.io/mekit/#/products/earth`. 이미지와 글꼴에도 같은 경로가 적용됩니다.
+
+```sh
+npm run build:pages
+npm run preview -- --mode pages
+```
+
+로컬 미리보기 주소는 `http://localhost:4173/mekit/`입니다. Pages 전용 데스크톱·모바일 검증은 `npm run test:pages`로 실행합니다.

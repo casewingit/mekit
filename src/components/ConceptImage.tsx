@@ -54,7 +54,7 @@ export function ConceptImage({
       aria-label={alt}
     >
       <image
-        href={`/images/concept-${asset.board}.png`}
+        href={`${import.meta.env.BASE_URL}images/concept-${asset.board}.png`}
         width={asset.width}
         height={asset.height}
       />

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { FavoritesProvider } from './components/Favorites'
 import { Layout } from './components/Layout'
 import { Home, Collections } from './pages/Home'
@@ -10,6 +10,7 @@ import { Checkout } from './pages/Checkout'
 import { Orders, OrderDetail } from './pages/Orders'
 import { Support, Policy } from './pages/Support'
 import { NotFound } from './pages/NotFound'
+const Router = import.meta.env.MODE === 'pages' ? HashRouter : BrowserRouter
 function RouteEffects() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
@@ -24,7 +25,7 @@ function RouteEffects() {
 }
 export function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <FavoritesProvider>
         <RouteEffects />
         <Routes>
@@ -44,6 +45,6 @@ export function App() {
           </Route>
         </Routes>
       </FavoritesProvider>
-    </BrowserRouter>
+    </Router>
   )
 }
