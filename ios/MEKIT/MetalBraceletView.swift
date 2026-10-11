@@ -45,7 +45,7 @@ struct MetalBraceletView: UIViewRepresentable {
 
 final class MetalBraceletRenderer: NSObject, MTKViewDelegate {
   var state = BraceletRenderState(
-    pose: nil, calibration: Calibration(), length: 17.5, occlusion: true)
+    pose: nil, calibration: Calibration(), length: LengthSelection.referenceLength, occlusion: true)
   private let queue: MTLCommandQueue
   private let braceletPipeline: MTLRenderPipelineState
   private let maskPipeline: MTLRenderPipelineState
@@ -144,7 +144,7 @@ final class MetalBraceletRenderer: NSObject, MTKViewDelegate {
       if state.occlusion { render(mask, count: maskCount, pipeline: maskPipeline, scale: scale) }
       render(
         bracelet, count: braceletCount, pipeline: braceletPipeline,
-        scale: scale * Float(state.length / 17.5))
+        scale: scale * Float(state.length / LengthSelection.referenceLength))
     }
     encoder.endEncoding()
     command.present(drawable)

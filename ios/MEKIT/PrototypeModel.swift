@@ -27,7 +27,7 @@ final class PrototypeModel: ObservableObject {
   let camera = CameraController()
   @Published private(set) var status: CaptureStatus = .ready
   @Published private(set) var pose: ScreenPose?
-  @Published var length = 17.5
+  @Published var length = LengthSelection.referenceLength
   @Published var calibration = Calibration()
   @Published private(set) var modelPreview = false
   @Published var rendererError: String?

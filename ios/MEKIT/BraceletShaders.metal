@@ -28,6 +28,8 @@ fragment float4 braceletFragment(RasterVertex in [[stage_in]]) {
         grain = 0.88 + 0.12 * sin(in.local.y * 110 + sin(in.local.z * 34) * 2);
     if (in.color.w > 1.5 && in.color.w < 2.5)
         grain = 0.91 + 0.09 * sin(dot(in.local, float3(68, 54, 87)));
+    if (in.color.w > 3.5)
+        grain = 0.97 + 0.03 * sin(in.local.x * 1300); // subtle brushed silver, not a measured texture
     float specular = pow(max(dot(reflect(-light, n), float3(0, 0, 1)), 0.0), 32);
     return float4(in.color.rgb * grain * diffuse + specular * (in.color.w > 2.5 ? 0.6 : 0.12), 1);
 }

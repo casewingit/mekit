@@ -26,8 +26,12 @@ final class PrototypeUITests: XCTestCase {
     modelImage.name = "EARTH-unoccluded-model-review"
     modelImage.lifetime = .keepAlways
     add(modelImage)
-    app.buttons["lengthIncrease"].tap()
-    app.buttons["lengthIncrease"].tap()
+    XCTAssertEqual(app.staticTexts["lengthReadout"].label, "20.0cm")
+    for length in ["19.5", "20.0", "20.5"] {
+      app.buttons["studyLength" + length].tap()
+      XCTAssertEqual(app.staticTexts["lengthReadout"].label, length + "cm")
+      XCTAssertEqual(app.buttons["studyLength" + length].value as? String, "선택됨")
+    }
     app.buttons["calibrationPanel"].tap()
     XCTAssertEqual(app.buttons["calibrationPanel"].value as? String, "펼침")
     app.scrollViews.firstMatch.swipeUp()
@@ -36,7 +40,7 @@ final class PrototypeUITests: XCTestCase {
     XCTAssertNotEqual(app.staticTexts["scaleReadout"].label, "100%")
     app.buttons["resetCalibration"].tap()
     XCTAssertEqual(app.staticTexts["scaleReadout"].label, "100%")
-    XCTAssertEqual(app.staticTexts["lengthReadout"].label, "18.5cm")
+    XCTAssertEqual(app.staticTexts["lengthReadout"].label, "20.5cm")
     XCTAssertFalse(app.staticTexts["rendererFailure"].exists)
     let screenshot = XCTAttachment(screenshot: app.screenshot())
     screenshot.name = "EARTH-model-review-not-camera"
@@ -54,12 +58,28 @@ final class PrototypeUITests: XCTestCase {
     if toggle.value as? String == "1" { toggle.tap() }
     app.scrollViews.firstMatch.swipeDown()
     app.scrollViews.firstMatch.swipeDown()
+    let fullImage = XCTAttachment(screenshot: app.screenshot())
+    fullImage.name = "EARTH-mask-off"
+    fullImage.lifetime = .keepAlways
+    add(fullImage)
     let full = try coloredModelPixels(app)
     XCTAssertGreaterThan(full, 500, "3D 모델이 실제로 렌더링되어야 합니다.")
     app.scrollViews.firstMatch.swipeUp()
     toggle.tap()
+    XCTAssertEqual(toggle.value as? String, "1", "가림 스위치가 켜져야 합니다.")
     app.scrollViews.firstMatch.swipeDown()
     app.scrollViews.firstMatch.swipeDown()
+    // SwiftUI's switch update and Metal's next drawable are asynchronous.
+    let maskRendered = XCTNSPredicateExpectation(
+      predicate: NSPredicate { _, _ in
+        guard let count = try? self.coloredModelPixels(app) else { return false }
+        return Double(count) < Double(full) * 0.85 && Double(count) > Double(full) * 0.20
+      }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [maskRendered], timeout: 5), .completed)
+    let maskedImage = XCTAttachment(screenshot: app.screenshot())
+    maskedImage.name = "EARTH-mask-on"
+    maskedImage.lifetime = .keepAlways
+    add(maskedImage)
     let masked = try coloredModelPixels(app)
     XCTAssertLessThan(Double(masked), Double(full) * 0.85, "뒤쪽 모델 일부가 가려져야 합니다.")
     XCTAssertGreaterThan(Double(masked), Double(full) * 0.20, "앞쪽 모델은 계속 보여야 합니다.")

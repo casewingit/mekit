@@ -86,11 +86,11 @@ final class GeometryTests: XCTestCase {
     value.set(scale: .nan, x: .infinity, y: .nan, tilt: -.infinity)
     XCTAssertEqual(value, Calibration())
   }
-  func testLengthSelectionRequiresSupportedHalfCentimeterSteps() {
-    XCTAssertTrue(LengthSelection.accepts(15))
-    XCTAssertTrue(LengthSelection.accepts(17.5))
-    XCTAssertTrue(LengthSelection.accepts(21))
-    for value in [14.5, 21.5, 17.25, Double.nan, Double.infinity] {
+  func testLengthSelectionIsLimitedToUnconfirmedEarthStudyLengths() {
+    for value in [19.5, 20.0, 20.5] {
+      XCTAssertTrue(LengthSelection.accepts(value))
+    }
+    for value in [15, 17.5, 19, 20.25, 21, Double.nan, Double.infinity] {
       XCTAssertFalse(LengthSelection.accepts(value))
     }
   }

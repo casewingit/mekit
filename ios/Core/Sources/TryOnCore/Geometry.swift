@@ -176,8 +176,10 @@ public struct Calibration: Equatable, Sendable {
   public mutating func reset() { self = Calibration() }
 }
 public enum LengthSelection {
+  // Issue #2: study candidates, not a confirmed sales size range or wrist measurement.
+  public static let studyLengths: [Double] = [19.5, 20, 20.5]
+  public static let referenceLength: Double = 20
   public static func accepts(_ length: Double) -> Bool {
-    length.isFinite && (15...21).contains(length)
-      && abs(length * 2 - (length * 2).rounded()) < 0.00001
+    length.isFinite && studyLengths.contains(length)
   }
 }

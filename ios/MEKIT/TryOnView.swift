@@ -19,7 +19,7 @@ struct TryOnView: View {
           HStack(alignment: .firstTextBaseline) {
             Text("MEKIT").font(.system(size: 28, weight: .medium, design: .serif)).tracking(2)
             Spacer()
-            Text("IPHONE · FIT STUDY 01").font(.system(size: 10, weight: .medium)).tracking(1)
+            Text("IPHONE · PROTOTYPE").font(.system(size: 10, weight: .medium)).tracking(1)
           }
           HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 5) {
@@ -170,28 +170,33 @@ struct TryOnView: View {
     }
   }
   private var lengthSelection: some View {
-    HStack {
-      VStack(alignment: .leading, spacing: 5) {
-        Text("완성 길이").font(.system(size: 14, weight: .medium))
-        Text("길이 선택 · 둘레 측정 아님").font(.system(size: 11)).foregroundStyle(.secondary)
+    VStack(alignment: .leading, spacing: 10) {
+      HStack {
+        Text("완성 길이 비교").font(.system(size: 14, weight: .medium))
+        Spacer()
+        Text(String(format: "%.1fcm", model.length)).monospacedDigit()
+          .font(.system(size: 15, weight: .medium)).accessibilityIdentifier("lengthReadout")
       }
-      Spacer()
-      Button {
-        model.length -= 0.5
-      } label: {
-        Image(systemName: "minus")
+      HStack(spacing: 8) {
+        ForEach(LengthSelection.studyLengths, id: \.self) { length in
+          Button {
+            model.length = length
+          } label: {
+            Text(String(format: "%.1fcm", length))
+              .font(.system(size: 14, weight: .medium)).monospacedDigit()
+              .frame(maxWidth: .infinity, minHeight: 44)
+              .foregroundStyle(model.length == length ? .white : olive)
+              .background(
+                model.length == length ? olive : olive.opacity(0.08),
+                in: RoundedRectangle(cornerRadius: 12))
+          }.buttonStyle(.plain)
+            .accessibilityIdentifier(String(format: "studyLength%.1f", length))
+            .accessibilityValue(model.length == length ? "선택됨" : "선택 안 됨")
+        }
       }
-      .accessibilityLabel("완성 길이 줄이기").accessibilityIdentifier("lengthDecrease")
-      .disabled(model.length <= 15).frame(width: 40, height: 44)
-      Text(String(format: "%.1fcm", model.length)).monospacedDigit()
-        .font(.system(size: 15, weight: .medium)).accessibilityIdentifier("lengthReadout")
-      Button {
-        model.length += 0.5
-      } label: {
-        Image(systemName: "plus")
-      }
-      .accessibilityLabel("완성 길이 늘리기").accessibilityIdentifier("lengthIncrease")
-      .disabled(model.length >= 21).frame(width: 40, height: 44)
+      Text("18cm 손목 기준의 비교 후보예요. 판매 사이즈는 미확정이며, 화면 크기는 실제 착용 여유를 나타내지 않아요.")
+        .font(.system(size: 11)).foregroundStyle(.secondary)
+        .fixedSize(horizontal: false, vertical: true)
     }
   }
   private func slider(
