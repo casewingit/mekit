@@ -6,3 +6,8 @@ playwright-report/
 .env.*
 !.env.example
 .DS_Store
+ios/Core/.build/
+ios/Core/.swiftpm/
+ios/DerivedData/
+*.xcuserstate
+xcuserdata/

@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24EF47453079B656E90F6C8E /* MetalBraceletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DEBC05D72994BC1DBB12E /* MetalBraceletView.swift */; };
+		5753D345A818764DB8836904 /* BraceletShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CAABC04D7D1A4F4E7F29B69E /* BraceletShaders.metal */; };
+		71BBDF7B69E1F42BB7D7EE00 /* TryOnCore in Frameworks */ = {isa = PBXBuildFile; productRef = F6777E656EAA6B55FDC3942D /* TryOnCore */; };
+		845D6924D8248E3CDFC8889C /* BraceletMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223A15AE69C1245FD29ED1A /* BraceletMesh.swift */; };
+		A2FEF6B327C0B7BD9EA8188A /* PrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE85FD437B4FE5BB851D65 /* PrototypeUITests.swift */; };
+		B4717205755E65C60F91E522 /* MEKITApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2C56A099973D5749B50588 /* MEKITApp.swift */; };
+		E86753886E3F9274F98ADCEE /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2236444C53B5B7F799D39 /* CameraController.swift */; };
+		EE08AA3EFEE104A10DB59BA1 /* PrototypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98959D7B31F5B114F4A79BA7 /* PrototypeModel.swift */; };
+		EF8E5ED3E41E823DD5811133 /* TryOnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15020917B8DEAD5F172072AD /* TryOnView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C068B91E2F75D356FEC4EDDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 323CF28B070CBB048057A67E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D14229B9B8390AFE50680438;
+			remoteInfo = MEKIT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15020917B8DEAD5F172072AD /* TryOnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnView.swift; sourceTree = "<group>"; };
+		5223A15AE69C1245FD29ED1A /* BraceletMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraceletMesh.swift; sourceTree = "<group>"; };
+		5CE59813D46C321586CEB5F4 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Core; sourceTree = SOURCE_ROOT; };
+		6F9225E8230E22CC5A30FB06 /* MEKITUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MEKITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C1DEBC05D72994BC1DBB12E /* MetalBraceletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalBraceletView.swift; sourceTree = "<group>"; };
+		82D77AA727D4BE9547938AE6 /* MEKIT.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MEKIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98959D7B31F5B114F4A79BA7 /* PrototypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeModel.swift; sourceTree = "<group>"; };
+		9B2C56A099973D5749B50588 /* MEKITApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MEKITApp.swift; sourceTree = "<group>"; };
+		B0EE85FD437B4FE5BB851D65 /* PrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeUITests.swift; sourceTree = "<group>"; };
+		CAABC04D7D1A4F4E7F29B69E /* BraceletShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BraceletShaders.metal; sourceTree = "<group>"; };
+		F5A2236444C53B5B7F799D39 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6EBE30EB26F4BBC52AEA71B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71BBDF7B69E1F42BB7D7EE00 /* TryOnCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		436D409C040B37021C2F6E38 /* MEKITUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B0EE85FD437B4FE5BB851D65 /* PrototypeUITests.swift */,
+			);
+			path = MEKITUITests;
+			sourceTree = "<group>";
+		};
+		50A764975221DF34C66ECDA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82D77AA727D4BE9547938AE6 /* MEKIT.app */,
+				6F9225E8230E22CC5A30FB06 /* MEKITUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EC57E0BB910C587DE170545 = {
+			isa = PBXGroup;
+			children = (
+				81130BBE0DCFBED2A4BD08BF /* MEKIT */,
+				436D409C040B37021C2F6E38 /* MEKITUITests */,
+				ECBBEC91218570CED06FF345 /* Packages */,
+				50A764975221DF34C66ECDA9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81130BBE0DCFBED2A4BD08BF /* MEKIT */ = {
+			isa = PBXGroup;
+			children = (
+				5223A15AE69C1245FD29ED1A /* BraceletMesh.swift */,
+				CAABC04D7D1A4F4E7F29B69E /* BraceletShaders.metal */,
+				F5A2236444C53B5B7F799D39 /* CameraController.swift */,
+				9B2C56A099973D5749B50588 /* MEKITApp.swift */,
+				7C1DEBC05D72994BC1DBB12E /* MetalBraceletView.swift */,
+				98959D7B31F5B114F4A79BA7 /* PrototypeModel.swift */,
+				15020917B8DEAD5F172072AD /* TryOnView.swift */,
+			);
+			path = MEKIT;
+			sourceTree = "<group>";
+		};
+		ECBBEC91218570CED06FF345 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				5CE59813D46C321586CEB5F4 /* Core */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D14229B9B8390AFE50680438 /* MEKIT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC4E316618B8831D88D24156 /* Build configuration list for PBXNativeTarget "MEKIT" */;
+			buildPhases = (
+				A6C09F0BA204A48A2C27E222 /* Sources */,
+				6EBE30EB26F4BBC52AEA71B9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MEKIT;
+			packageProductDependencies = (
+				F6777E656EAA6B55FDC3942D /* TryOnCore */,
+			);
+			productName = MEKIT;
+			productReference = 82D77AA727D4BE9547938AE6 /* MEKIT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC769F5DB50A3B660D2E2EF8 /* MEKITUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80B9F8C98CB76D7C24310057 /* Build configuration list for PBXNativeTarget "MEKITUITests" */;
+			buildPhases = (
+				EAA998BE2AD37A0D141A918E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B10C1CD659E04D63AAD1F3F /* PBXTargetDependency */,
+			);
+			name = MEKITUITests;
+			packageProductDependencies = (
+			);
+			productName = MEKITUITests;
+			productReference = 6F9225E8230E22CC5A30FB06 /* MEKITUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		323CF28B070CBB048057A67E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D14229B9B8390AFE50680438 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DC769F5DB50A3B660D2E2EF8 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = D14229B9B8390AFE50680438;
+					};
+				};
+			};
+			buildConfigurationList = 2D8029510CB72E7BECC7A1A0 /* Build configuration list for PBXProject "MEKIT" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6EC57E0BB910C587DE170545;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4EA5D7D559236047AABBF70D /* XCLocalSwiftPackageReference "Core" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 50A764975221DF34C66ECDA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D14229B9B8390AFE50680438 /* MEKIT */,
+				DC769F5DB50A3B660D2E2EF8 /* MEKITUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6C09F0BA204A48A2C27E222 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845D6924D8248E3CDFC8889C /* BraceletMesh.swift in Sources */,
+				5753D345A818764DB8836904 /* BraceletShaders.metal in Sources */,
+				E86753886E3F9274F98ADCEE /* CameraController.swift in Sources */,
+				B4717205755E65C60F91E522 /* MEKITApp.swift in Sources */,
+				24EF47453079B656E90F6C8E /* MetalBraceletView.swift in Sources */,
+				EE08AA3EFEE104A10DB59BA1 /* PrototypeModel.swift in Sources */,
+				EF8E5ED3E41E823DD5811133 /* TryOnView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAA998BE2AD37A0D141A918E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2FEF6B327C0B7BD9EA8188A /* PrototypeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B10C1CD659E04D63AAD1F3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D14229B9B8390AFE50680438 /* MEKIT */;
+			targetProxy = C068B91E2F75D356FEC4EDDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A4556143E71AD6C822CBC39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		20FE6C37245CC6E4B6A7E2BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3C40AF0A8375E0E496DEDFA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.casewingit.MEKITUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MEKIT;
+			};
+			name = Debug;
+		};
+		57ECB78B9ABF001CB9A1A3B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.casewingit.MEKITUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MEKIT;
+			};
+			name = Release;
+		};
+		62D696E6F49DD3A19AC2D59C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "내 손과 손목을 인식해 EARTH 팔찌의 검증용 착용 모습을 화면에 표시합니다. 카메라 영상은 저장하거나 전송하지 않습니다.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.casewingit.mekit.prototype;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7B578761FEB6B327F9C74F0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "내 손과 손목을 인식해 EARTH 팔찌의 검증용 착용 모습을 화면에 표시합니다. 카메라 영상은 저장하거나 전송하지 않습니다.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.casewingit.mekit.prototype;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8029510CB72E7BECC7A1A0 /* Build configuration list for PBXProject "MEKIT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A4556143E71AD6C822CBC39 /* Debug */,
+				20FE6C37245CC6E4B6A7E2BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		80B9F8C98CB76D7C24310057 /* Build configuration list for PBXNativeTarget "MEKITUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C40AF0A8375E0E496DEDFA0 /* Debug */,
+				57ECB78B9ABF001CB9A1A3B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BC4E316618B8831D88D24156 /* Build configuration list for PBXNativeTarget "MEKIT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62D696E6F49DD3A19AC2D59C /* Debug */,
+				7B578761FEB6B327F9C74F0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4EA5D7D559236047AABBF70D /* XCLocalSwiftPackageReference "Core" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Core;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F6777E656EAA6B55FDC3942D /* TryOnCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TryOnCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 323CF28B070CBB048057A67E /* Project object */;
+}
