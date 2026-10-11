@@ -29,8 +29,6 @@ final class PrototypeModel: ObservableObject {
   @Published private(set) var pose: ScreenPose?
   @Published var length = LengthSelection.referenceLength
   @Published var calibration = Calibration()
-  @Published private(set) var modelPreview = false
-  @Published var rendererError: String?
   @Published private(set) var wantsCamera = false
   private var viewport = Size2(0, 0)
   private var filter = PoseFilter()
@@ -50,7 +48,6 @@ final class PrototypeModel: ObservableObject {
     }
   }
   func startCamera() {
-    modelPreview = false
     wantsCamera = true
     resume()
   }
@@ -71,16 +68,6 @@ final class PrototypeModel: ObservableObject {
     } else if wantsCamera {
       resume()
     }
-  }
-  func showModelPreview() {
-    pause()
-    modelPreview = true
-  }
-  var previewPose: ScreenPose? {
-    guard active, modelPreview, viewport.width > 0 else { return nil }
-    return ScreenPose(
-      center: Point2(viewport.width / 2, viewport.height * 0.53), width: viewport.width * 0.64,
-      angle: -0.12)
   }
   func expire() {
     if pose != nil, filter.current(at: CACurrentMediaTime()) == nil {

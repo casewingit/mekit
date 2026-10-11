@@ -6,8 +6,6 @@ import TryOnCore
 struct TryOnView: View {
   @StateObject private var model = PrototypeModel()
   @Environment(\.scenePhase) private var scenePhase
-  @State private var calibrationExpanded = false
-  @State private var occlusion = true
   private let olive = Color(red: 0.25, green: 0.31, blue: 0.22)
   private let paper = Color(red: 0.96, green: 0.95, blue: 0.92)
   private let tick = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
@@ -24,66 +22,36 @@ struct TryOnView: View {
           HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 5) {
               Text("001 EARTH").font(.system(size: 11, weight: .semibold)).tracking(2)
-              Text("내 손목 위의 EARTH").font(.system(size: 25, weight: .semibold))
+              Text("손목 추적 확인").font(.system(size: 25, weight: .semibold))
             }
             Spacer()
-            Text("49,000원").font(.system(size: 15, weight: .medium))
+            VStack(alignment: .trailing, spacing: 4) {
+              Text("예정 판매가").font(.system(size: 10))
+              Text("49,000원").font(.system(size: 15, weight: .medium))
+            }
           }
+          VStack(alignment: .leading, spacing: 8) {
+            Text("실물 기반 착용 모델이 필요해요.").font(.system(size: 15, weight: .medium))
+              .accessibilityIdentifier("physicalAssetUnavailable")
+            Text("실물 사진·치수와 대조한 EARTH 모델을 확보하면 착용 모습을 보여 드릴게요.")
+              .font(.system(size: 12)).foregroundStyle(.secondary)
+              .fixedSize(horizontal: false, vertical: true)
+          }.padding(16)
+            .background(.white.opacity(0.6), in: RoundedRectangle(cornerRadius: 16))
           cameraSurface
             .frame(height: min(440, max(310, screen.size.height * 0.49)))
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("renderSurface")
-          Text(model.modelPreview ? "카메라 추적 아님 · 3D 모델 검토" : model.status.text)
+          Text(model.status.text)
             .font(.system(size: 14, weight: .medium))
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityIdentifier("captureStatus")
-          if let error = model.rendererError {
-            Text(error).foregroundStyle(.red).accessibilityIdentifier("rendererFailure")
-          }
           actionButtons
           lengthSelection
-          VStack(alignment: .leading) {
-            Button {
-              withAnimation { calibrationExpanded.toggle() }
-            } label: {
-              HStack {
-                Text("화면에 맞게 보정하기").font(.system(size: 15, weight: .medium))
-                Spacer()
-                Image(systemName: calibrationExpanded ? "chevron.up" : "chevron.down")
-              }.frame(minHeight: 28).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityIdentifier("calibrationPanel")
-              .accessibilityValue(calibrationExpanded ? "펼침" : "접힘")
-            if calibrationExpanded {
-              VStack(spacing: 14) {
-                slider(
-                  "크기", key: \.scale, range: 0.7...1.4, id: "scale",
-                  value: "\(Int((model.calibration.scale * 100).rounded()))%")
-                slider(
-                  "좌우 위치", key: \.x, range: -0.75...0.75, id: "x",
-                  value: String(format: "%.2f", model.calibration.x))
-                slider(
-                  "위아래 위치", key: \.y, range: -0.75...0.75, id: "y",
-                  value: String(format: "%.2f", model.calibration.y))
-                slider(
-                  "기울기", key: \.tilt, range: -35...35, id: "tilt",
-                  value: "\(Int(model.calibration.tilt))°")
-                Toggle("손목 뒤 근사 가림", isOn: $occlusion).font(.system(size: 14))
-                  .accessibilityIdentifier("occlusionToggle")
-                Button("보정 초기화") { model.resetCalibration() }
-                  .accessibilityIdentifier("resetCalibration")
-                  .frame(maxWidth: .infinity, minHeight: 44)
-                  .background(olive.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
-              }.padding(.top, 16)
-            }
-          }
-          .tint(olive)
-          .padding(16)
-          .background(.white.opacity(0.6), in: RoundedRectangle(cornerRadius: 18))
           VStack(alignment: .leading, spacing: 8) {
-            Text("검증용 3D 모델 · 실물 제품과 다를 수 있어요.").fontWeight(.medium)
-            Text(
-              "손 랜드마크로 위치·방향을 근사합니다. 가림은 타원형 손목 마스크이며 실제 피부 윤곽이 아닙니다. 손목을 크게 돌리면 표시가 부정확할 수 있어요.")
-            Text("카메라 화면은 실제 둘레·조임·촉감이나 정확한 핏을 보장하지 않아요. 영상은 저장하거나 전송하지 않습니다.")
+            Text("지금은 손목 위치만 확인할 수 있어요.").fontWeight(.medium)
+            Text("실물 확인 전의 임시 팔찌는 표시하지 않습니다. 카메라의 위치 안내는 손목 둘레나 착용감을 측정하지 않아요.")
+            Text("영상은 저장하거나 전송하지 않습니다.")
           }
           .font(.system(size: 12)).foregroundStyle(.secondary)
           .fixedSize(horizontal: false, vertical: true)
@@ -102,14 +70,17 @@ struct TryOnView: View {
     GeometryReader { geometry in
       ZStack {
         Color(red: 0.85, green: 0.85, blue: 0.81)
-        if !model.modelPreview { CameraPreview(session: model.camera.session) }
-        if model.modelPreview {
-          VStack {
-            Text("3D MODEL REVIEW").font(.system(size: 10, weight: .semibold)).tracking(2)
-            Spacer()
-            Text("정적 모델 · 카메라 영상 없음").font(.system(size: 11))
-          }.padding(20)
-        } else if model.pose == nil {
+        CameraPreview(session: model.camera.session)
+        if let pose = model.pose {
+          Path { path in
+            let dx = cos(pose.angle) * pose.width / 2
+            let dy = sin(pose.angle) * pose.width / 2
+            path.move(to: CGPoint(x: pose.center.x - dx, y: pose.center.y - dy))
+            path.addLine(to: CGPoint(x: pose.center.x + dx, y: pose.center.y + dy))
+          }.stroke(.white, style: StrokeStyle(lineWidth: 2, dash: [6, 5]))
+          Circle().stroke(.white, lineWidth: 2).frame(width: 12, height: 12)
+            .position(x: pose.center.x, y: pose.center.y)
+        } else {
           VStack(spacing: 14) {
             Image(systemName: "hand.raised").font(.system(size: 80, weight: .ultraLight))
             Text("반대편 손과 손목을\n함께 보여 주세요.")
@@ -119,15 +90,9 @@ struct TryOnView: View {
           .shadow(color: .black.opacity(0.5), radius: 6)
           .accessibilityHidden(true)
         }
-        MetalBraceletView(
-          state: BraceletRenderState(
-            pose: model.modelPreview ? model.previewPose : model.pose,
-            calibration: model.calibration, length: model.length,
-            occlusion: occlusion)
-        ) { model.rendererError = $0 }
         VStack {
           HStack {
-            Text(model.modelPreview ? "모델 검토" : (model.pose == nil ? "추적 대기" : "2D 손목 추적"))
+            Text(model.pose == nil ? "추적 대기" : "손목 위치")
               .font(.system(size: 10, weight: .semibold))
               .padding(.horizontal, 10).padding(.vertical, 7)
               .background(.ultraThinMaterial, in: Capsule())
@@ -149,24 +114,16 @@ struct TryOnView: View {
           }
         }.buttonStyle(PrimaryButton(color: olive))
       } else {
-        Button(model.wantsCamera ? "착용 확인 중지" : "카메라로 착용해 보기") {
+        Button(model.wantsCamera ? "추적 확인 중지" : "카메라로 손목 위치 확인") {
           if model.wantsCamera {
             model.pause()
           } else {
-            occlusion = true
             model.startCamera()
           }
         }
         .accessibilityIdentifier("startCamera")
         .buttonStyle(PrimaryButton(color: olive))
       }
-      Button("3D 모델만 검토하기") {
-        occlusion = false
-        model.showModelPreview()
-      }
-      .accessibilityIdentifier("modelPreview")
-      .font(.system(size: 13, weight: .medium))
-      .frame(maxWidth: .infinity, minHeight: 40)
     }
   }
   private var lengthSelection: some View {
@@ -194,32 +151,9 @@ struct TryOnView: View {
             .accessibilityValue(model.length == length ? "선택됨" : "선택 안 됨")
         }
       }
-      Text("18cm 손목 기준의 비교 후보예요. 판매 사이즈는 미확정이며, 화면 크기는 실제 착용 여유를 나타내지 않아요.")
+      Text("18cm 손목 기준의 비교 후보예요. 판매 사이즈는 미확정이며, 실물 착용 검증 후 확정합니다.")
         .font(.system(size: 11)).foregroundStyle(.secondary)
         .fixedSize(horizontal: false, vertical: true)
-    }
-  }
-  private func slider(
-    _ title: String, key: WritableKeyPath<Calibration, Double>, range: ClosedRange<Double>,
-    id: String, value: String
-  ) -> some View {
-    VStack(spacing: 4) {
-      HStack {
-        Text(title)
-        Spacer()
-        Text(value).monospacedDigit().accessibilityIdentifier("\(id)Readout")
-      }.font(.system(size: 12))
-      Slider(
-        value: Binding(
-          get: { model.calibration[keyPath: key] },
-          set: { next in
-            var copy = model.calibration
-            copy[keyPath: key] = next
-            copy.set(scale: copy.scale, x: copy.x, y: copy.y, tilt: copy.tilt)
-            model.calibration = copy
-          }), in: range
-      )
-      .accessibilityLabel(title).accessibilityIdentifier("\(id)Slider")
     }
   }
 }
