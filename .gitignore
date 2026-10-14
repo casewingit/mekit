@@ -11,3 +11,9 @@ ios/Core/.swiftpm/
 ios/DerivedData/
 *.xcuserstate
 xcuserdata/
+
+.venv-reference/
+output/reference-render/
+__pycache__/
+assets/render-references/*.jpg
+assets/render-references/*.png

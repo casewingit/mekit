@@ -4,6 +4,10 @@ MEKIT은 완성된 팔찌 디자인과 길이를 선택하고 내 손목에 착�
 
 2026-10-11 최신 요청에 따라 **출시 플랫폼은 독립 iPhone 앱**, 웹은 랜딩/기존 데모로 유지합니다. [이슈 #2](https://github.com/casewingit/mekit/issues/2)의 기준은 001 EARTH · 49,000원입니다. [iPhone 프로젝트](ios/README.md), [출시 방향](docs/iphone-release-direction-2026-10-11.md), [검증 기록](docs/iphone-validation-2026-10-11.md)을 참고하세요. 현재는 기술 프로토타입이며 실기기 검증과 App Store 출시는 아직 진행하지 않았습니다. 최신 [실물 제품 기준](docs/real-product-policy-2026-10-11.md)에 따라 실물과 대조하지 않은 임시 팔찌는 iPhone 화면에서 제외했습니다. 지금은 카메라·손목 위치 추적만 제공하며 실물 기반 3D 자산 확보 후 착용 표시를 연결합니다. 아래 웹의 이전 제품 가격·구성은 최신 제품 기준이 아닙니다.
 
+## 사진 참고 렌더링
+
+`npm run render:reference`로 저장한 외부 제품 사진에서 PNG·GLB·대화형 검토 화면을 다시 만듭니다. [재실행 안내](docs/photo-reference-rendering.md)를 참고하세요. 결과는 추정 깊이의 2.5D 참고 메시이며 EARTH 실물 제품 자산이 아닙니다.
+
 ## 실행
 
 Node.js 22.12 이상 또는 호환되는 최신 버전에서 실행합니다.
