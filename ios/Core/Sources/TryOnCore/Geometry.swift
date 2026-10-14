@@ -179,6 +179,9 @@ public enum LengthSelection {
   // Issue #2: study candidates, not a confirmed sales size range or wrist measurement.
   public static let studyLengths: [Double] = [19.5, 20, 20.5]
   public static let referenceLength: Double = 20
+  public static func restored(_ length: Double) -> Double {
+    accepts(length) ? length : referenceLength
+  }
   public static func accepts(_ length: Double) -> Bool {
     length.isFinite && studyLengths.contains(length)
   }

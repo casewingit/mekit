@@ -6,11 +6,14 @@ final class PrototypeUITests: XCTestCase {
   func testUnverifiedModelCannotAppearAsEarthProduct() throws {
     let app = XCUIApplication()
     app.launch()
+    app.buttons["earthDetail"].tap()
+    app.swipeUp()
     XCTAssertFalse(
       app.buttons["modelPreview"].exists,
       "임시 형상을 EARTH 제품 미리보기로 제공하면 안 됩니다.")
     XCTAssertTrue(app.staticTexts["physicalAssetUnavailable"].exists)
     XCTAssertFalse(app.staticTexts["내 손목 위의 EARTH"].exists)
+    app.buttons["openTracking"].tap()
     app.buttons["startCamera"].tap()
     XCTAssertTrue(app.staticTexts["physicalAssetUnavailable"].exists)
     XCTAssertFalse(app.buttons["modelPreview"].exists)
@@ -26,6 +29,8 @@ final class PrototypeUITests: XCTestCase {
     #endif
     let app = XCUIApplication()
     app.launch()
+    app.tabBars.buttons["스튜디오"].tap()
+    app.buttons["openTracking"].tap()
     app.buttons["startCamera"].tap()
     XCTAssertTrue(app.staticTexts["실제 iPhone의 후면 카메라가 필요해요."].waitForExistence(timeout: 5))
     XCTAssertFalse(app.staticTexts["손목을 천천히 움직여 보세요."].exists)
@@ -36,7 +41,7 @@ final class PrototypeUITests: XCTestCase {
   func testStudyLengthsRemainUnconfirmedWithoutProductModel() throws {
     let app = XCUIApplication()
     app.launch()
-    XCTAssertEqual(app.staticTexts["lengthReadout"].label, "20.0cm")
+    app.buttons["earthDetail"].tap()
     app.scrollViews.firstMatch.swipeUp()
     for length in ["19.5", "20.0", "20.5"] {
       app.buttons["studyLength" + length].tap()

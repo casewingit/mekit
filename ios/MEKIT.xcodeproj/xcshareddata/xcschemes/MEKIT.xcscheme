@@ -44,6 +44,17 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6DEC81814304FE8AF5391825"
+               BuildableName = "MEKITTests.xctest"
+               BlueprintName = "MEKITTests"
+               ReferencedContainer = "container:MEKIT.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC769F5DB50A3B660D2E2EF8"
                BuildableName = "MEKITUITests.xctest"
                BlueprintName = "MEKITUITests"

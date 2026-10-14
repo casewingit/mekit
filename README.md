@@ -2,7 +2,9 @@
 
 MEKIT은 완성된 팔찌 디자인과 길이를 선택하고 내 손목에 착용한 모습을 확인하는 독립 iPhone 앱으로 개발합니다. 이 저장소에는 iPhone 기술 프로토타입과 기존 한국어 웹 커머스 데모가 함께 있습니다.
 
-2026-10-11 최신 요청에 따라 **출시 플랫폼은 독립 iPhone 앱**, 웹은 랜딩/기존 데모로 유지합니다. [이슈 #2](https://github.com/casewingit/mekit/issues/2)의 기준은 001 EARTH · 49,000원입니다. [iPhone 프로젝트](ios/README.md), [출시 방향](docs/iphone-release-direction-2026-10-11.md), [검증 기록](docs/iphone-validation-2026-10-11.md)을 참고하세요. 현재는 기술 프로토타입이며 실기기 검증과 App Store 출시는 아직 진행하지 않았습니다. 최신 [실물 제품 기준](docs/real-product-policy-2026-10-11.md)에 따라 실물과 대조하지 않은 임시 팔찌는 iPhone 화면에서 제외했습니다. 지금은 카메라·손목 위치 추적만 제공하며 실물 기반 3D 자산 확보 후 착용 표시를 연결합니다. 아래 웹의 이전 제품 가격·구성은 최신 제품 기준이 아닙니다.
+출시 플랫폼은 **독립 iPhone 앱**, 웹은 랜딩/기존 데모로 유지합니다. [이슈 #2](https://github.com/casewingit/mekit/issues/2)의 기준은 001 EARTH · 49,000원입니다. iPhone 0.2.0에는 컬렉션·제품 상세·길이 선택 저장·실물 사진 스튜디오·USDZ 가져오기·보관함을 연결했습니다. 카메라에서 가져온 사진의 2D 배치 또는 가져온 3D 모델의 표시·보정·손목 뒤 가림 근사를 시험할 수 있습니다. [iPhone 프로젝트](ios/README.md)와 [최신 검증 기록](docs/iphone-validation-2026-10-14.md)을 참고하세요.
+
+EARTH 실물 샘플과 정확한 제품 모델은 아직 없어 EARTH 제품의 착용 표시를 제공하지 않습니다. 외부 사진·추정 GLB·임시 팔찌를 상품 자산에 넣지 않았습니다. 가져온 자료는 별도 스튜디오 참고 자료입니다. 실기기 착용 검증·Apple 서명·TestFlight/App Store 배포는 아직 진행하지 않았습니다. [실물 제품 기준](docs/real-product-policy-2026-10-11.md), [기존 출시 방향](docs/iphone-release-direction-2026-10-11.md)을 참고하세요. 아래 웹의 이전 제품 가격·구성은 최신 제품 기준이 아닙니다.
 
 ## 사진 참고 렌더링
 

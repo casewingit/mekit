@@ -14,7 +14,8 @@
     "test:e2e": "playwright test",
     "test:pages": "npm run build:pages && playwright test --config playwright.pages.config.ts",
     "render:reference": "node scripts/render-reference.mjs",
-    "test:render-reference": "node scripts/render-reference.mjs --test"
+    "test:render-reference": "node scripts/render-reference.mjs --test",
+    "ios:verify": "bash scripts/verify-ios.sh"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-kr": "^5.3.0",
