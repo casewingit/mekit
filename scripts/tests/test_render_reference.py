@@ -14,6 +14,10 @@ class PhotoRendererTests(unittest.TestCase):
         rgba = np.array([[[245, 242, 233, 255], [178, 112, 45, 255], [30, 31, 27, 255], [0, 0, 0, 0]]], dtype=np.uint8)
         self.assertEqual(renderer.extract_mask(rgba).tolist(), [[False, True, True, False]])
 
+    def test_neutral_silver_is_preserved_against_sampled_background(self):
+        rgba = np.array([[[242, 241, 237, 255], [210, 214, 218, 255], [30, 30, 28, 255], [0, 0, 0, 0]]], dtype=np.uint8)
+        self.assertEqual(renderer.extract_mask(rgba, background_rgb=[242, 241, 237], tolerance=12).tolist(), [[False, True, True, False]])
+
     def test_small_highlight_hole_is_filled_but_wrist_opening_remains(self):
         mask = np.ones((16, 16), dtype=bool)
         mask[0, :] = mask[-1, :] = False

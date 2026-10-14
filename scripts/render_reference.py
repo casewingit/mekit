@@ -19,7 +19,10 @@ from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def extract_mask(rgba, min_saturation=0.16, max_dark=0.42):
+def extract_mask(rgba, min_saturation=0.16, max_dark=0.42, background_rgb=None, tolerance=12):
+    if background_rgb is not None:
+        delta = np.abs(rgba[..., :3].astype(np.int16) - np.asarray(background_rgb, dtype=np.int16))
+        return (delta.max(axis=2) > tolerance) & (rgba[..., 3] > 0)
     rgb = rgba[..., :3].astype(np.float32) / 255
     high, low = rgb.max(axis=2), rgb.min(axis=2)
     saturation = (high - low) / np.maximum(high, 0.001)
@@ -164,7 +167,7 @@ def make_glb(positions, uvs, indices, texture_png, provenance):
     return struct.pack('<4sII', b'glTF', 2, size) + struct.pack('<I4s', len(header), b'JSON') + header + struct.pack('<I4s', len(binary), b'BIN\0') + binary
 
 
-def render(positions, uvs, indices, texture, yaw=0, pitch=0, size=900):
+def render(positions, uvs, indices, texture, yaw=0, pitch=0, size=900, background=(244, 241, 232)):
     y, x = np.radians([yaw, pitch])
     ry = np.array([[np.cos(y), 0, np.sin(y)], [0, 1, 0], [-np.sin(y), 0, np.cos(y)]])
     rx = np.array([[1, 0, 0], [0, np.cos(x), -np.sin(x)], [0, np.sin(x), np.cos(x)]])
@@ -172,7 +175,7 @@ def render(positions, uvs, indices, texture, yaw=0, pitch=0, size=900):
     # Orthographic texture projection; source lighting is preserved, not re-created.
     projected = np.column_stack((size*.5 + points[:, 0]/.08*size*.80, size*.5 - points[:, 1]/.08*size*.80))
     pixels = np.full((size, size, 4), 255, dtype=np.uint8)
-    pixels[..., :3] = [244, 241, 232]
+    pixels[..., :3] = background
     depth = np.full((size, size), -np.inf)
     th, tw = texture.shape[:2]
     for tri in indices:
@@ -204,25 +207,38 @@ def render(positions, uvs, indices, texture, yaw=0, pitch=0, size=900):
 
 def main():
     parser = argparse.ArgumentParser(description='외부 제품 사진으로 2.5D 참고 렌더를 생성합니다. 실제 EARTH 복원이 아닙니다.')
-    parser.add_argument('--profile', type=Path, default=ROOT/'assets/render-references/sitti-olive-lava.json')
+    parser.add_argument('--profile', type=Path, default=ROOT/'assets/render-references/chrome-hearts-fancy-link.json')
     parser.add_argument('--input', type=Path)
     parser.add_argument('--source-page', help='다른 입력 사진을 사용할 때의 출처 URL 또는 로컬 출처 설명')
-    parser.add_argument('--out', type=Path, default=ROOT/'output/reference-render/sitti-olive-lava')
-    parser.add_argument('--grid', type=int, default=256)
+    parser.add_argument('--out', type=Path, default=None)
+    parser.add_argument('--grid', type=int, default=None)
     parser.add_argument('--min-saturation', type=float, default=.16)
     parser.add_argument('--max-dark', type=float, default=.42)
-    parser.add_argument('--min-component-area', type=int, default=512)
-    parser.add_argument('--max-hole-area', type=int, default=1600)
-    parser.add_argument('--clean-radius', type=int, default=8)
-    parser.add_argument('--relief', type=float, default=.06, help='추정 깊이 비율. 실측값 아님')
+    parser.add_argument('--min-component-area', type=int, default=None)
+    parser.add_argument('--max-hole-area', type=int, default=None)
+    parser.add_argument('--clean-radius', type=int, default=None)
+    parser.add_argument('--relief', type=float, default=None, help='추정 깊이 비율. 실측값 아님')
     args = parser.parse_args()
+    profile = json.loads(args.profile.read_text())
+    settings = {} if args.input else profile.get('renderSettings', {})
+    for key, profile_key, fallback in [('grid','grid',256), ('min_component_area','minComponentArea',512), ('max_hole_area','maxHoleArea',1600), ('clean_radius','cleanRadius',8), ('relief','relief',.06)]:
+        if getattr(args, key) is None:
+            setattr(args, key, settings.get(profile_key, fallback))
+    background_rgb = settings.get('backgroundColor')
+    background_tolerance = settings.get('backgroundTolerance', 12)
+    render_background = settings.get('renderBackground', [244, 241, 232])
+    for color in [background_rgb, render_background]:
+        if color is not None and (len(color) != 3 or any(not isinstance(c,int) or not 0 <= c <= 255 for c in color)):
+            parser.error('프로필의 RGB는 0~255 정수 세 개여야 합니다.')
+    if not isinstance(background_tolerance, (int,float)) or not 0 <= background_tolerance <= 255:
+        parser.error('backgroundTolerance는 0~255 범위여야 합니다.')
+    args.out = args.out or ROOT/'output/reference-render'/args.profile.stem
     if not 16 <= args.grid <= 512 or not 0 <= args.relief <= .15:
         parser.error('grid는 16~512, relief는 0~0.15 범위여야 합니다.')
     if not 0 <= args.min_saturation <= 1 or not 0 <= args.max_dark <= 1 or args.min_component_area < 1 or args.max_hole_area < 0:
         parser.error('색 기준은 0~1, min-component-area는 양수, max-hole-area는 0 이상이어야 합니다.')
     if not 0 <= args.clean_radius <= 32:
         parser.error('clean-radius는 0~32 범위여야 합니다.')
-    profile = json.loads(args.profile.read_text())
     source = args.input or ROOT/profile['image']
     if args.input and not args.source_page:
         parser.error('다른 입력은 --source-page로 출처를 지정해야 합니다.')
@@ -249,7 +265,7 @@ def main():
     source_image = Image.open(io.BytesIO(source_bytes))
     source_mime = Image.MIME.get(source_image.format, 'application/octet-stream')
     rgba = np.array(ImageOps.exif_transpose(source_image).convert('RGBA'))
-    mask = remove_small_components(extract_mask(rgba, args.min_saturation, args.max_dark), args.min_component_area)
+    mask = remove_small_components(extract_mask(rgba, args.min_saturation, args.max_dark, background_rgb, background_tolerance), args.min_component_area)
     mask = fill_small_holes(mask, max_area=args.max_hole_area)
     mask = clean_thin_fringe(mask, radius=args.clean_radius)
     ys, xs = np.where(mask)
@@ -267,14 +283,15 @@ def main():
     provenance.update(inputSHA256=source_hash, verifiedEarthProduct=False, physicalScaleVerified=False,
                       geometryKind='photo-relief-2.5d', depthIsEstimated=True, backSurfaceRecovered=False,
                       nominalRenderWidthMeters=.08, reliefRatio=args.relief, grid=args.grid,
-                      minSaturation=args.min_saturation, maxDark=args.max_dark,
+                      minSaturation=args.min_saturation, maxDark=args.max_dark, backgroundColor=background_rgb,
+                      backgroundTolerance=background_tolerance, renderBackground=render_background,
                       minComponentArea=args.min_component_area, maxHoleArea=args.max_hole_area, cleanRadius=args.clean_radius,
                       crop=[int(v) for v in bbox], vertices=len(positions), triangles=len(indices))
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out/'texture.png').write_bytes(texture_file.getvalue())
     (args.out/'reference.glb').write_bytes(make_glb(positions, uvs, indices, texture_file.getvalue(), provenance))
-    render(positions, uvs, indices, texture).save(args.out/'front.png')
-    render(positions, uvs, indices, texture, yaw=28, pitch=20).save(args.out/'angled.png')
+    render(positions, uvs, indices, texture, background=render_background).save(args.out/'front.png')
+    render(positions, uvs, indices, texture, yaw=28, pitch=20, background=render_background).save(args.out/'angled.png')
     (args.out/'manifest.json').write_text(json.dumps(provenance, indent=2, ensure_ascii=False)+'\n')
     template = (ROOT/'scripts/reference-review.html').read_text()
     payload = {'positions': positions.tolist(), 'uvs': uvs.tolist(), 'indices': indices.ravel().tolist(),

@@ -1,0 +1,20 @@
+{
+  "label": "Chrome Hearts · Fancy Link Bracelet (Justin Reed 판매 사진)",
+  "image": "assets/render-references/chrome-hearts-fancy-link.jpg",
+  "sourcePage": "https://justinreed.com/products/chrome-hearts-fancy-link-bracelet-1415",
+  "sourceImage": "https://justinreed.com/cdn/shop/files/1_209857cd-607c-4d69-8ae5-7bc880603f37.jpg?v=1742222932",
+  "sha256": "3dbfd1812b800e318f6b5b480c8d649c6c04e96a5087516e712364aa46c9b337",
+  "role": "external-product-reference",
+  "verifiedEarthProduct": false,
+  "usage": "Local technical reference; not a MEKIT product asset.",
+  "renderSettings": {
+    "grid": 384,
+    "backgroundColor": [242, 241, 237],
+    "backgroundTolerance": 3,
+    "minComponentArea": 256,
+    "maxHoleArea": 600,
+    "cleanRadius": 1,
+    "relief": 0.04,
+    "renderBackground": [25, 26, 28]
+  }
+}

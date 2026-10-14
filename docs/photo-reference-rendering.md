@@ -1,6 +1,6 @@
 # 사진 참고 렌더링 재실행
 
-Google 이미지 검색에서 확인한 [Sitti Olive Wood Bracelet - Lava Stone (Black)](https://sittisoap.com/products/olive-wood-bracelet-lava-stone-black)의 판매 사진을 고정 입력으로 사용합니다. 사진은 실제 제품의 판매처 자료이며 **MEKIT EARTH 사진이 아닙니다.** 실제 촬영 방식이나 수정 이력을 독립 검증한 것은 아닙니다.
+최신 사용자 요청에 따라 [Chrome Hearts Fancy Link Bracelet](https://justinreed.com/products/chrome-hearts-fancy-link-bracelet-1415)의 Justin Reed 판매 사진을 기본 입력으로 사용합니다. 묵직한 실버 링크와 크로스 디테일을 참고합니다. 사진은 실제 제품의 판매처 자료이며 **MEKIT EARTH 사진이 아닙니다.** 실제 촬영 방식이나 수정 이력을 독립 검증한 것은 아닙니다.
 
 ## 한 번의 명령으로 다시 만들기
 
@@ -24,7 +24,7 @@ npm run render:reference
 
 ## 출력
 
-`output/reference-render/sitti-olive-lava/`에 생성합니다. 같은 입력과 옵션의 재실행은 해당 출력 파일을 갱신합니다. 다른 실행을 보존하려면 `--out`을 지정합니다.
+`output/reference-render/chrome-hearts-fancy-link/`에 생성합니다. 같은 입력과 옵션의 재실행은 해당 출력 파일을 갱신합니다. 다른 실행을 보존하려면 `--out`을 지정합니다.
 
 | 파일            | 내용                                              |
 | --------------- | ------------------------------------------------- |
@@ -37,7 +37,7 @@ npm run render:reference
 
 `review.html`은 파일 자체로 열 수 있습니다. 외부 JavaScript나 이미지 서버가 필요하지 않습니다. WebGL2가 없으면 아래 PNG를 확인할 수 있습니다. 대화형 각도는 ±40도로 제한하여 없는 뒷면을 제품처럼 보여 주지 않습니다.
 
-새 사진으로 실행하려면 출처를 함께 지정합니다.
+새 사진으로 실행하려면 출처를 함께 지정합니다. 직접 지정한 사진에는 기본 제품의 배경 RGB를 적용하지 않고 기존 색 추출을 사용합니다.
 
 ```sh
 npm run render:reference -- \
@@ -46,7 +46,7 @@ npm run render:reference -- \
   --out output/reference-render/my-reference
 ```
 
-다른 사진은 밝은 중성 배경과 따뜻한 목재·어두운 돌을 기준으로 하는 추출 방식에 맞아야 합니다. 색이 비슷한 배경이나 얇은 코드는 자동 추출이 부정확할 수 있습니다. `--min-saturation`, `--max-dark`, `--min-component-area`, `--max-hole-area`, `--clean-radius`로 조절합니다. 얇은 코드를 보존할 때는 `--clean-radius 0`으로 확인합니다. 완성 이미지의 윤곽을 직접 확인하세요.
+현재 크롬하츠 프로필은 원본의 모서리에서 측정한 배경 RGB `[242,241,237]`과의 차이를 기준으로 추출하므로 밝은 실버도 보존합니다. `assets/render-references/chrome-hearts-fancy-link.json`의 `renderSettings`에 색 차이·윤곽 정리·검토 배경색을 저장했습니다. 프로필을 바꾸면 설정과 기본 출력 폴더도 함께 바뀝니다. 다른 사진은 원본 배경과 제품의 색 차이에 맞춘 별도 프로필을 사용하세요. 색이 비슷한 배경이나 얇은 코드는 자동 추출이 부정확할 수 있습니다. `--min-saturation`, `--max-dark`, `--min-component-area`, `--max-hole-area`, `--clean-radius`로 조절합니다. 얇은 코드를 보존할 때는 `--clean-radius 0`으로 확인합니다. 완성 이미지의 윤곽을 직접 확인하세요.
 
 ```sh
 npm run render:reference -- --grid 384 --relief 0.04 --out output/reference-render/detail
@@ -70,4 +70,8 @@ GLB와 메타데이터에는 `verifiedEarthProduct: false`, `physicalScaleVerifi
 
 웹·iPhone 소스와 실기기 검증 상태는 이번 도구 추가로 바뀌지 않습니다.
 
-실행 결과: 정점 19,469개·삼각형 36,876개. 자동 테스트 6개 통과, GLB 검증 오류 0·경고 0(2의 거듭제곱이 아닌 텍스처 크기 정보 1개), 재실행 산출물 6개 해시 동일, 브라우저 WebGL 표시·좌우/상하 각도·정면 초기화 동작을 확인했습니다. 입력이 없는 첫 실행의 자동 다운로드·해시 확인도 실행했습니다.
+이전 Sitti 실험 결과: 정점 19,469개·삼각형 36,876개. 당시 자동 테스트 6개 통과, GLB 검증 오류 0·경고 0(2의 거듭제곱이 아닌 텍스처 크기 정보 1개), 재실행 산출물 6개 해시 동일, 브라우저 WebGL 표시·좌우/상하 각도·정면 초기화 동작을 확인했습니다. 입력이 없는 첫 실행의 자동 다운로드·해시 확인도 실행했습니다.
+
+최신 기본 레퍼런스는 Chrome Hearts Fancy Link입니다. 이는 렌더링 참고 사진의 변경이며, MEKIT의 실제 제품 사양·브랜드명·가격을 크롬하츠 제품으로 바꾼 것이 아닙니다.
+
+크롬하츠 입력 실행 결과: 정점 51,782개·삼각형 99,058개. 실버 보존 회귀 테스트를 포함한 자동 테스트 7개가 통과했고 GLB 검증 오류·경고는 0개입니다. 금속 하이라이트를 보존하도록 원본 배경과의 색 차이 허용값을 3으로 맞췄습니다.
