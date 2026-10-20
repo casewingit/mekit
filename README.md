@@ -1,5 +1,11 @@
 # MEKIT
 
+## 디자인 검토 공간 — MEKIT Studio
+
+[MEKIT Studio 열기](https://casewingit.github.io/mekit/studio/): 전통매듭에서 영감을 받은 해외 방향 무드보드 3종과 갤러리 UI 생성 시안을 넘겨 보며 검토합니다. 이미지 확대·원본 저장·브라우저 내 개인 메모와 내보내기를 제공합니다. 모든 이미지는 생성 콘셉트이며 실물 제품 증거가 아닙니다.
+
+소스는 `public/studio/`, 프롬프트는 `public/studio/prompts/`에 있습니다. [방향·출처·운영 안내](docs/MEKIT-global-maedeup-direction-2026-10-20.md)를 참고하세요. `node --test tests/studio.test.mjs`로 검증하고, `node scripts/deploy-studio.mjs`로 기존 랜딩을 보존하면서 Studio만 게시합니다.
+
 MEKIT은 완성된 팔찌 디자인과 길이를 선택하고 내 손목에 착용한 모습을 확인하는 독립 iPhone 앱으로 개발합니다. 이 저장소에는 iPhone 기술 프로토타입과 기존 한국어 웹 커머스 데모가 함께 있습니다.
 
 출시 플랫폼은 **독립 iPhone 앱**, 웹은 랜딩/기존 데모로 유지합니다. [이슈 #2](https://github.com/casewingit/mekit/issues/2)의 기준은 001 EARTH · 49,000원입니다. iPhone 0.2.0에는 컬렉션·제품 상세·길이 선택 저장·실물 사진 스튜디오·USDZ 가져오기·보관함을 연결했습니다. 카메라에서 가져온 사진의 2D 배치 또는 가져온 3D 모델의 표시·보정·손목 뒤 가림 근사를 시험할 수 있습니다. [iPhone 프로젝트](ios/README.md)와 [최신 검증 기록](docs/iphone-validation-2026-10-14.md)을 참고하세요.
