@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3efe7">
+  <meta name="description" content="MEKIT의 디자인 탐색을 기록하는 작업실. 한국 전통매듭에서 영감을 받은 세 가지 팔찌 무드보드와 갤러리 시안을 비교하세요.">
+  <title>MEKIT STUDIO — 매듭에서 시작한 다음 장면</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23242421'/%3E%3Ctext x='8' y='29' fill='%23f3efe7' font-family='serif' font-size='28'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="images/01-black-knot.png">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#gallery">무드보드로 바로 가기</a>
+  <header class="header shell">
+    <a class="wordmark" href="./" aria-label="MEKIT Studio 처음으로">MEKIT <span>/ STUDIO</span></a>
+    <span class="header-rule"></span>
+    <nav aria-label="작업실 메뉴"><a href="#archive">Archive <span>04</span></a><a href="#direction">Design notes</a><a href="../" class="site-link">MEKIT ↗</a></nav>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span class="dot"></span> AN OPEN DESIGN NOTEBOOK</p><h1 id="page-title">A small knot.<br><em>A wider world.</em></h1></div>
+      <div class="intro-note"><p class="eyebrow">SERIES 001 / GLOBAL MAEDEUP</p><p>매듭에서 시작한, 다음 장면.<br>한국의 손기술과 오늘의 팔찌 사이를 탐색합니다.</p><span class="date">2026.10.20 · US + EUROPE · 4 studies</span></div>
+    </section>
+
+    <section id="gallery" class="gallery" aria-label="무드보드 뷰어" tabindex="-1">
+      <div class="image-column">
+        <div class="stage" id="stage">
+          <button id="image-open" class="image-button" aria-label="현재 무드보드 크게 보기"><img id="board-image" src="images/01-black-knot.png" width="1536" height="1024" alt="먹색 로프와 작은 매듭 팔찌의 생성 무드보드" fetchpriority="high"><span class="expand-label">크게 보기 <span aria-hidden="true">↗</span></span></button>
+          <p id="image-error" hidden>이미지를 불러오지 못했습니다. 원본 열기로 다시 확인해 주세요.</p>
+        </div>
+        <div class="image-caption"><span>AI-GENERATED CONCEPT · 실물 제품 사진 아님</span><span>← → 키 / 좌우 스와이프</span></div>
+      </div>
+      <aside class="board-info" aria-label="현재 보드 설명">
+        <div class="board-top"><span id="board-type" class="eyebrow">PRODUCT DIRECTION</span><span id="counter">01 / 04</span></div>
+        <div aria-live="polite" aria-atomic="true"><h2 id="board-title">BLACK KNOT</h2><p id="board-korean" class="board-korean">먹빛에 남은 매듭</p></div>
+        <div class="short-rule"></div>
+        <p id="board-line" class="board-line">Korean knot, everyday form.</p>
+        <p id="board-description" class="description"></p>
+        <div id="palette" class="palette" aria-label="색상 팔레트"></div>
+        <div id="tags" class="tags"></div>
+        <div class="paging"><button id="previous" aria-label="이전 무드보드">← <span>이전</span></button><button id="next" aria-label="다음 무드보드"><span>다음</span> →</button></div>
+        <div class="file-actions"><a id="original" href="images/01-black-knot.png" target="_blank" rel="noopener">원본 열기 ↗</a><a id="download" href="images/01-black-knot.png" download>PNG 저장 ↓</a></div>
+      </aside>
+    </section>
+
+    <section id="archive" class="archive" aria-labelledby="archive-heading">
+      <div class="section-label"><h2 id="archive-heading">IN THIS SERIES</h2><span>01—04 / 방향을 선택해 비교하세요</span></div>
+      <div id="thumbnails" class="thumbnails"></div>
+    </section>
+
+    <section class="review-grid" aria-label="보드 검토">
+      <div class="curator"><p class="eyebrow">CURATOR'S NOTE</p><h2>무엇을 가져오고,<br>무엇을 확인할까.</h2><dl><dt>매듭의 해석</dt><dd id="knot-note"></dd><dt>추천하는 이유</dt><dd id="opinion-note"></dd><dt>실물에서 확인할 것</dt><dd id="check-note"></dd></dl></div>
+      <div class="notes"><div class="notes-heading"><div><p class="eyebrow">YOUR REVIEW</p><h2>이 방향에 대한 생각</h2></div><span id="note-status" role="status">이 브라우저에 저장</span></div><label for="review-note" id="note-label">BLACK KNOT 검토 메모</label><textarea id="review-note" maxlength="5000" rows="6" placeholder="마음에 드는 부분, 바꾸고 싶은 디테일, 다음에 확인할 것…"></textarea><div class="note-footer"><p>메모는 현재 브라우저에만 저장됩니다.<br>다른 기기와 공유하거나 GPT에 보내려면 내보내기를 사용하세요.</p><button id="export-notes">메모 내보내기 ↓</button></div><p id="export-status" class="small" role="status"></p></div>
+    </section>
+
+    <section id="direction" class="direction" aria-labelledby="direction-title">
+      <p class="eyebrow">THE DIRECTION / 해외 타깃에 대한 의견</p>
+      <div class="direction-heading"><h2 id="direction-title">한국의 매듭을,<br>매일의 물건으로.</h2><p>전통매듭은 MEKIT의 출발점을 설명할 수 있습니다. 작은 구조, 손으로 맺는 과정, 누가 어떻게 만드는지에 대한 이야기가 실제 제품과 연결될 때 차별점이 됩니다.</p></div>
+      <div class="principles"><article><span>01 / FORM FIRST</span><h3>옷에 어울리는 비율부터</h3><p>2mm 로프와 작은 무광 금속. 전통의 요소를 더하더라도 두께와 장식의 양은 절제합니다. 먹색을 첫 샘플로, 적갈색을 차별화 비교안으로 제안합니다.</p></article><article><span>02 / NAME THE CRAFT</span><h3>Maedeup, 이름과 과정</h3><p>영문에서는 “Maedeup — Korean decorative knotting”으로 소개합니다. 실제 적용 기법과 제작자를 확인한 뒤 구체적인 매듭 이름과 제작 과정을 보여줍니다.</p></article><article><span>03 / PROVE THE DEMAND</span><h3>국가별 구매 반응 확인</h3><p>미국·유럽을 우선 검토합니다. 워크웨어·미니멀 액세서리 고객을 가설로 두고, 미국과 유럽 내 첫 국가에서 실물·배송 포함 가격·사이즈 교환 조건의 반응을 각각 확인합니다.</p></article></div>
+    </section>
+
+    <details class="provenance"><summary>시안의 범위와 참고 자료 <span>＋</span></summary><div><p>모든 보드는 GPT 이미지 생성 도구로 만든 콘셉트입니다. 실제 매듭 구조, 완성 외경 2mm, 다이니마 사용 여부, 금속 재질·코팅·강도는 이미지로 입증되지 않습니다. 원석은 제외했으며 도자기·목재는 배경 소재입니다. 도래·연봉매듭의 정확한 재현과 로프 적합성은 장인·샘플 검증이 필요합니다.</p><p>색상 이름은 시각적 방향입니다. 천연염색·한지 사용·한국 제조·장인 협업은 실제 공급과 제작이 확인된 뒤 상품에 표시해야 합니다. 이 공간은 공개 GitHub Pages이며 로그인으로 보호되는 개인 보관함이 아닙니다.</p><ul><li><a href="https://nfm.go.kr/user/bbs/english/17/469/bbsDataView/23987.do?bbsDataCategory=&amp;column=&amp;page=2&amp;search=&amp;searchEDate=&amp;searchSDate=" target="_blank" rel="noopener">국립민속박물관 — MAEDEUP 전시 ↗</a></li><li><a href="https://dl.nanet.go.kr/detail/MONO2201705517" target="_blank" rel="noopener">국회도서관 — Korean traditional decorative knotting ↗</a></li><li><a id="prompt-link" href="prompts/01-black-knot.txt" target="_blank" rel="noopener">현재 보드 생성 프롬프트 ↗</a></li></ul></div></details>
+    <noscript><p>보드 탐색에는 JavaScript가 필요합니다. <a href="images/01-black-knot.png">먹색</a> · <a href="images/02-indigo-line.png">쪽빛</a> · <a href="images/03-red-thread.png">적갈색</a> · <a href="images/04-studio-space.png">공간 시안</a> 원본은 직접 볼 수 있습니다.</p></noscript>
+  </main>
+  <footer class="footer shell"><span>MEKIT / STUDIO</span><p>생각을 만들고, 나란히 놓고, 다음을 고릅니다.</p><span>AI CONCEPT ARCHIVE © 2026</span></footer>
+  <dialog id="lightbox" aria-labelledby="lightbox-title"><div class="lightbox-toolbar"><h2 id="lightbox-title">BLACK KNOT</h2><button id="close-lightbox" aria-label="확대 보기 닫기">닫기 ×</button></div><div class="lightbox-content"><img id="lightbox-image" alt="" width="1536" height="1024"></div><div class="lightbox-footer"><button id="lightbox-prev" aria-label="확대 보기에서 이전 보드">← 이전</button><span>원본 크기는 ‘원본 열기’에서 확인</span><button id="lightbox-next" aria-label="확대 보기에서 다음 보드">다음 →</button></div></dialog>
+</body>
+</html>
