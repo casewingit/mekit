@@ -57,3 +57,6 @@ HTML/CSS/ES modules로 만든 독립 정적 페이지다. 네 보드의 이전·
 - 390×844 모바일 크기의 브라우저에서 레이아웃과 버튼 탐색을 확인했다. 실제 iPhone 및 손가락 스와이프 동작은 별도 검증 대상이다.
 - 소스 구현 커밋: `b1c604a` (`codex/iphone-earth-prototype`). Pages 게시 커밋: `3a97069b4e01f633b394e0ca4db829d9208c8dbd`.
 - 배포 시 기존 랜딩 파일 133개의 SHA-256 동일성을 확인했다.
+- 공개 브라우저에서 네 이미지 로딩, 보드 전환, 미국·유럽 설명 및 데스크톱·모바일 레이아웃을 확인했다. 썸네일 고정 높이를 수정하고 스타일 주소에 버전을 추가했다.
+- 최종 소스 구현: `5242dff`. 최종 Pages: `52fdeb1570a6fe83ad4db7f22fa51f80bd17c288`. GitHub Actions `39440303468` 성공.
+- 기존 랜딩 `/mekit/` HTTP 200 확인. 최종 공개 화면 캡처: `/tmp/mekit-studio-live-desktop.png`, `/tmp/mekit-studio-live-mobile.png` (로컬 확인용, Git 미포함).
