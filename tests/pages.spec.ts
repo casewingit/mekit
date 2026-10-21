@@ -9,16 +9,16 @@ test('Pages subdirectory serves images and supports product links and direct rel
     if (response.status() >= 400) failures.push(`${response.status()} ${response.url()}`)
   })
   await page.goto('/mekit/')
-  await expect(page.getByRole('heading', { name: '익숙한 매듭, 나만의 스타일로.' })).toBeVisible()
-  await expect(page.getByRole('link', { name: '나의 한 줄 찾기', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('heading', { name: 'A quiet thread of Korea.' })).toBeVisible()
+  await expect(page.getByRole('link', { name: '이전 커머스 데모 ↗', exact: true })).toHaveAttribute(
     'href',
     '#/products',
   )
   await expect(page.locator('svg image').first()).toHaveAttribute(
     'href',
-    '/mekit/images/concept-3.png',
+    '/mekit/studio/images/02-indigo-line.png',
   )
-  await page.getByRole('link', { name: '나의 한 줄 찾기', exact: true }).click()
+  await page.getByRole('link', { name: '이전 커머스 데모 ↗', exact: true }).click()
   await expect(page).toHaveURL(/\/mekit\/#\/products$/)
   await page.getByRole('link', { name: 'EARTH 자세히 보기' }).click()
   await expect(page).toHaveURL(/\/mekit\/#\/products\/earth$/)
@@ -37,4 +37,24 @@ test('Pages preserves section anchors and direct checkout query parameters', asy
   await page.goto('/mekit/#/checkout?product=amber&length=18')
   await expect(page.getByRole('button', { name: '45,000원 데모 주문 만들기' })).toBeVisible()
   await expect(page.getByText('18.0cm / 수량 1')).toBeVisible()
+})
+
+
+test('Indigo landing connects four image scenes to Studio and preserves board deep links', async ({ page }) => {
+  await page.goto('/mekit/')
+  await expect(page.locator('[data-scene]')).toHaveCount(4)
+  await expect(page.getByText('아직 주문을 받지 않습니다.', { exact: false })).toBeVisible()
+  await page.getByRole('link', { name: 'INDIGO LINE 살펴보기' }).click()
+  await expect(page).toHaveURL(/indigo-story$/)
+  await expect(page.locator('#indigo-story')).toBeInViewport()
+  await page.getByRole('link', { name: '무드보드 Studio 열기' }).click()
+  await expect(page).toHaveURL(/studio\/#indigo-line$/)
+  await expect(page.locator('#board-title')).toHaveText('INDIGO LINE')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('BLACK KNOT')
+  await page.reload()
+  await expect(page.locator('#board-title')).toHaveText('BLACK KNOT')
+  await page.goto('/mekit/studio/')
+  await expect(page.locator('#board-title')).toHaveText('INDIGO LINE')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
 })

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('all four collections open with their fixed-price sizing form', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: '익숙한 매듭, 나만의 스타일로.' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'A quiet thread of Korea.' })).toBeVisible()
   for (const code of ['earth', 'industry', 'amber', 'fragment']) {
     await page.goto(`/products/${code}`)
     await expect(page.getByRole('heading', { name: code.toUpperCase(), exact: true })).toBeVisible()
@@ -55,7 +55,7 @@ test('checkout validates, creates one demo order, and recovers without storing d
 })
 
 test('favorites persist, material archive and size guide are navigable', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/products')
   await page.getByRole('button', { name: 'EARTH 찜하기' }).click()
   await page.goto('/favorites')
   await expect(page.getByRole('link', { name: 'EARTH 자세히 보기' })).toBeVisible()

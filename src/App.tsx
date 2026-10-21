@@ -14,7 +14,7 @@ const Router = import.meta.env.MODE === 'pages' ? HashRouter : BrowserRouter
 function RouteEffects() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
-    document.title = 'MEKIT — Make it your own'
+    document.title = pathname === '/' ? 'MEKIT — INDIGO LINE' : 'MEKIT — Archive Demo'
     if (hash) requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView())
     else {
       window.scrollTo(0, 0)

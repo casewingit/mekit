@@ -5,6 +5,7 @@ import { boards, indexFromHash, wrapIndex, parseNotes } from '../public/studio/b
 
 test('every published board has a unique deep link, original PNG and generation prompt', () => {
   assert.equal(boards.length, 4)
+  assert.equal(boards[0].id, 'indigo-line')
   assert.equal(new Set(boards.map(b => b.id)).size, 4)
   for (const [index, board] of boards.entries()) {
     assert.equal(indexFromHash(`#${board.id}`), index)

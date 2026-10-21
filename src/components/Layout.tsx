@@ -7,11 +7,13 @@ import {
   MessageCircle,
   ArrowRight,
 } from 'lucide-react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useFavorites } from './Favorites'
 
 export function Layout() {
   const { favorites } = useFavorites()
+  const { pathname } = useLocation()
+  if (pathname === '/') return <main id="main-content" tabIndex={-1}><Outlet /></main>
   return (
     <>
       <a href="#main-content" className="skip-link">

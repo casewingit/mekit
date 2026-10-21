@@ -1,8 +1,14 @@
 # MEKIT
 
+## INDIGO LINE — 현재 선택한 방향
+
+[랜딩페이지](https://casewingit.github.io/mekit/)는 2026-10-21 선택한 INDIGO LINE을 중심으로 업데이트했습니다. 기존 생성 보드의 제품·착용·매듭·직물 네 장면을 원본 변경 없이 SVG 영역으로 표시합니다. 새 이미지나 검증된 실물 사진을 생성한 것이 아닙니다. 이전 커머스 데모는 하단 링크와 기존 경로에 남아 있으며 최신 판매 사양을 뜻하지 않습니다.
+
+사업 준비: [실행·구매 가이드](docs/MEKIT-launch-kit-2026-10-21.md) · [단계별 예산 CSV](docs/mekit-startup-budget-2026-10-21.csv). 이 자료는 웹 공개 디렉터리에 포함하지 않습니다.
+
 ## 디자인 검토 공간 — MEKIT Studio
 
-[MEKIT Studio 열기](https://casewingit.github.io/mekit/studio/): 전통매듭에서 영감을 받은 해외 방향 무드보드 3종과 갤러리 UI 생성 시안을 넘겨 보며 검토합니다. 이미지 확대·원본 저장·브라우저 내 개인 메모와 내보내기를 제공합니다. 모든 이미지는 생성 콘셉트이며 실물 제품 증거가 아닙니다.
+[MEKIT Studio 열기](https://casewingit.github.io/mekit/studio/): 선택한 INDIGO LINE을 첫 보드로, BLACK KNOT·RED THREAD와 초기 갤러리 UI 시안을 넘겨 보며 검토합니다. 이미지 확대·원본 저장·브라우저 내 개인 메모와 내보내기를 제공합니다. 모든 이미지는 생성 콘셉트이며 실물 제품 증거가 아닙니다.
 
 소스는 `public/studio/`, 프롬프트는 `public/studio/prompts/`에 있습니다. [방향·출처·운영 안내](docs/MEKIT-global-maedeup-direction-2026-10-20.md)를 참고하세요. `node --test tests/studio.test.mjs`로 검증하고, `node scripts/deploy-studio.mjs`로 기존 랜딩을 보존하면서 Studio만 게시합니다.
 
