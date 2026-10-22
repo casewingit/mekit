@@ -1,4 +1,4 @@
-import { boards, indexFromHash, wrapIndex, parseNotes } from './boards.js?v=20261023-2'
+import { boards, indexFromHash, wrapIndex, parseNotes } from './boards.js?v=20261023-3'
 
 const $ = id => document.getElementById(id)
 const storageKey = 'mekit-studio-review-v1'
