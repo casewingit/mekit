@@ -29,12 +29,15 @@ function FieldFrame({ scene }: { scene: keyof typeof frames }) {
 export function LineSelector() {
   return (
     <nav className="line-selector indigo-wrap" aria-label="제품 라인 탐색">
-      <span>ONE BRAND. TWO EXPRESSIONS.</span>
+      <span>ONE BRAND. THREE EXPRESSIONS.</span>
       <Link to="/#indigo-story">
         <small>01 / INDIGO LINE</small>쪽빛의 단정함 <ArrowDown size={16} />
       </Link>
       <Link to="/#field-line">
         <small>02 / FIELD LINE</small>나무와 돌의 묵직함 <ArrowDown size={16} />
+      </Link>
+      <Link to="/#shift-line">
+        <small>03 / SHIFT LINE</small>한 점의 색, 스트리트 감각 <ArrowDown size={16} />
       </Link>
     </nav>
   )

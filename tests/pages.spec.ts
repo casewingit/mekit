@@ -87,3 +87,41 @@ test('Field is a second line with working section and board links', async ({ pag
   await expect(page.locator('#board-title')).toHaveText('INDIGO LINE')
   expect(failures).toEqual([])
 })
+
+test('Shift color comparison updates every scene and opens matching Studio board', async ({
+  page,
+}) => {
+  const failures: string[] = []
+  page.on('pageerror', (error) => failures.push(error.message))
+  page.on('response', (response) => {
+    if (response.status() >= 400) failures.push(response.url())
+  })
+  await page.goto('/mekit/')
+  await page.getByRole('link', { name: '03 / SHIFT LINE 한 점의 색, 스트리트 감각' }).click()
+  await expect(page.locator('#shift-line')).toBeInViewport()
+  await expect(page.locator('[data-shift-scene]')).toHaveCount(4)
+  await expect(page.getByRole('button', { name: 'Cobalt', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.getByRole('button', { name: 'Lime', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Lime', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  for (const image of await page.locator('[data-shift-scene] image').all()) {
+    await expect(image).toHaveAttribute('href', '/mekit/studio/images/07-shift-lime.png')
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.getByRole('link', { name: 'SHIFT Lime 무드보드' }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / LIME')
+  await expect(page.locator('#board-image')).toHaveJSProperty('complete', true)
+  expect(
+    await page.locator('#board-image').evaluate((img: HTMLImageElement) => img.naturalWidth),
+  ).toBeGreaterThan(0)
+  await page.reload()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / LIME')
+  await page.getByRole('button', { name: '이전 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / COBALT')
+  expect(failures).toEqual([])
+})

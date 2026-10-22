@@ -114,3 +114,7 @@ npm run preview -- --mode pages
 ### FIELD LINE — 2026-10-22
 
 INDIGO의 댄디한 방향을 유지하며, 자연 소재를 쓰는 두 번째 라인 FIELD를 랜딩 다음 섹션과 Studio 두 번째 보드에 추가했습니다. 목재 한 조각·스모키 쿼츠 두 점·가는 로프의 생성 콘셉트입니다. 소재와 치수는 개발 후보이며 판매 사양이 아닙니다. [컨셉·개발 메모](docs/MEKIT-field-line-2026-10-22.md) / [생성 프롬프트](public/studio/prompts/05-field-line.txt).
+
+### SHIFT LINE — 2026-10-23
+
+세 번째 라인 SHIFT: 먹색 로프·작은 무광 블랙 금속·짧은 컬러 감기를 제안합니다. 랜딩에서 Cobalt/Lime을 비교하고 Studio의 개별 보드로 이동할 수 있습니다. INDIGO·FIELD를 유지하며 전체 보드는 7개입니다. [디자인 메모](docs/MEKIT-shift-line-2026-10-23.md).
