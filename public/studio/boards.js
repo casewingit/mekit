@@ -12,6 +12,18 @@ export const boards = [
     tags: ['선택한 메인 방향', '딥 인디고', '네 장면의 랜딩'],
   },
   {
+    id: 'field-line', title: 'FIELD LINE', korean: '나무와 돌, 거친 일상의 결', type: 'PRODUCT LINE / CONCEPT',
+    image: 'images/05-field-line.png', prompt: 'prompts/05-field-line.txt',
+    alt: '가는 갈색 로프에 짙은 목재와 스모키 쿼츠를 배치한 팔찌, 캔버스 재킷 착용, 연결 디테일과 소재 생성 무드보드',
+    line: 'A rougher edge. The same restraint.',
+    description: '짙은 목재 한 조각과 작은 원석 두 점. 자연의 질감을 가는 선 위에 얹어 워크웨어에 어울리는 남성적인 인상을 탐색합니다.',
+    knot: '짧은 매듭은 목재와 원석의 위치를 잡는 시각적 연결점입니다. 전통매듭의 특정 기법을 재현했다고 주장하지 않습니다.',
+    opinion: '2026.10.22 추가한 두 번째 라인입니다. INDIGO의 댄디함을 유지하면서 FIELD에는 자연 소재를 허용합니다. 원석 제외 조건은 INDIGO에 유지됩니다.',
+    check: '2mm 로프와 약 4mm 장식의 비율은 목표입니다. 원석 구멍과 남는 벽 두께, 충격 파손, 목재 수종·코팅·수분 반응, 금속 소재를 확인해야 합니다. 경도는 완제품 내구성 보증이 아닙니다.',
+    colors: [['Walnut', '#59402d'], ['Smoke', '#95816b'], ['Charcoal', '#28251f']],
+    tags: ['두 번째 상품 라인', '목재 + 원석', '워크웨어'],
+  },
+  {
     id: 'black-knot', title: 'BLACK KNOT', korean: '먹빛에 남은 매듭', type: 'PRODUCT DIRECTION',
     image: 'images/01-black-knot.png', prompt: 'prompts/01-black-knot.txt',
     alt: '먹색의 가는 로프, 작은 검은 금속과 매듭을 한지·한옥 질감 및 손목 착용 모습으로 구성한 생성 무드보드',

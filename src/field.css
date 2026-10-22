@@ -1,0 +1,225 @@
+.line-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding-block: 24px;
+  border-block: 1px solid #d7d3c8;
+  align-items: center;
+}
+.line-selector > span {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.line-selector a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  font-size: 14px;
+  padding: 12px 0;
+}
+.line-selector small {
+  grid-column: 1 / -1;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.field-line {
+  background: #28251f;
+  color: #eee5d5;
+  padding: 70px 0 45px;
+  scroll-margin-top: 20px;
+}
+.field-heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #575044;
+  padding-bottom: 24px;
+}
+.field-heading > span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+.field-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 65px;
+  padding: 55px 0 65px;
+  align-items: center;
+}
+.field-copy h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 4.5vw, 66px);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  margin: 25px 0 32px;
+}
+.field-copy h2 em {
+  font-weight: 400;
+  color: #cbb391;
+}
+.field-copy .field-korean {
+  font-size: 24px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+  letter-spacing: -0.04em;
+}
+.field-copy > p:not(.indigo-eyebrow):not(.field-korean) {
+  max-width: 410px;
+  font-size: 13px;
+  line-height: 2;
+  color: #c5bbaa;
+}
+.field-copy .indigo-text-link {
+  margin-top: 35px;
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid #a69172;
+  padding-bottom: 12px;
+}
+.field-colors {
+  display: flex;
+  gap: 22px;
+  margin-top: 45px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #cbb391;
+}
+.field-line [data-field-scene] {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.field-wrist svg {
+  aspect-ratio: 502/572;
+}
+.field-product svg {
+  aspect-ratio: 806/383;
+}
+.field-line figcaption {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 13px;
+  color: #bfb09b;
+}
+.field-materials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px;
+  padding: 45px 0 55px;
+}
+.field-materials article > span {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #bfb09b;
+}
+.field-materials h3 {
+  font-family: Georgia, serif;
+  font-size: 29px;
+  font-weight: 400;
+  margin: 16px 0;
+}
+.field-materials p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #c5bbaa;
+  max-width: 290px;
+}
+.field-detail-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 26px;
+}
+.field-detail-grid svg {
+  height: 300px;
+}
+.field-footnote {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  border-top: 1px solid #575044;
+  margin-top: 38px;
+  padding-top: 24px;
+}
+.field-footnote p {
+  max-width: 730px;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #bfb09b;
+}
+.field-footnote a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .line-selector {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-block: 18px;
+  }
+  .line-selector > span {
+    grid-column: 1 / -1;
+  }
+  .line-selector a {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .field-line {
+    padding-top: 40px;
+  }
+  .field-heading > span {
+    font-size: 8px;
+  }
+  .field-hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 35px 0;
+  }
+  .field-copy h2 {
+    font-size: 43px;
+  }
+  .field-copy .field-korean {
+    font-size: 23px;
+  }
+  .field-colors {
+    margin-top: 28px;
+  }
+  .field-materials {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 0;
+  }
+  .field-materials article {
+    border-bottom: 1px solid #575044;
+    padding-bottom: 25px;
+  }
+  .field-materials h3 {
+    font-size: 27px;
+    margin: 10px 0;
+  }
+  .field-materials p {
+    max-width: none;
+  }
+  .field-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .field-detail-grid svg {
+    height: auto;
+    aspect-ratio: 1.5;
+  }
+  .field-footnote {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .field-line figcaption {
+    font-size: 8px;
+    letter-spacing: 0.07em;
+  }
+}

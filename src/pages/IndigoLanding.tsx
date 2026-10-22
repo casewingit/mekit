@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import '../indigo.css'
+import { FieldLine, LineSelector } from '../components/FieldLine'
 
 const studio = `${import.meta.env.BASE_URL}studio/`
 const original = `${studio}images/02-indigo-line.png`
@@ -53,7 +54,7 @@ export function IndigoLanding() {
         </Link>
         <nav aria-label="메인 메뉴">
           <Link to="/#indigo-story">The line</Link>
-          <Link to="/#indigo-details">Details</Link>
+          <Link to="/#field-line">Field</Link>
           <a href={`${studio}#indigo-line`}>
             Studio <ArrowUpRight size={13} />
           </a>
@@ -99,6 +100,8 @@ export function IndigoLanding() {
           </figcaption>
         </figure>
       </section>
+
+      <LineSelector />
 
       <section className="indigo-story indigo-wrap" id="indigo-story">
         <div className="indigo-section-top">
@@ -200,6 +203,8 @@ export function IndigoLanding() {
         </div>
       </section>
 
+      <FieldLine />
+
       <section className="indigo-notebook" aria-labelledby="notebook-title">
         <div className="indigo-wrap indigo-notebook-inner">
           <div>
@@ -244,8 +249,9 @@ export function IndigoLanding() {
         </div>
         <div>
           <p>
-            INDIGO LINE은 현재 선택한 디자인 콘셉트입니다. 다이니마 사용 로프와 작은 무광 금속을
-            검토하고 있으며, 소재·매듭 구조·잠금장치·착용감을 샘플로 확인한 뒤 판매 사양을 정합니다.
+            INDIGO LINE과 FIELD LINE은 개발 중인 두 가지 디자인 콘셉트입니다. 로프와 작은 금속,
+            FIELD의 목재·원석을 검토하고 있으며, 소재·매듭 구조·잠금장치·착용감을 샘플로 확인한 뒤
+            판매 사양을 정합니다.
           </p>
           <p className="indigo-fine">
             모든 이미지는 AI 생성 시안입니다. 2mm는 설계 목표이며, 실제 규격·강도·금속 재질·한국
