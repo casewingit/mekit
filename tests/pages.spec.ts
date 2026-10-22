@@ -88,7 +88,7 @@ test('Field is a second line with working section and board links', async ({ pag
   expect(failures).toEqual([])
 })
 
-test('Shift color comparison updates every scene and opens matching Studio board', async ({
+test('Shift shows the latest magnetic study and preserves earlier concepts in Studio', async ({
   page,
 }) => {
   const failures: string[] = []
@@ -97,31 +97,26 @@ test('Shift color comparison updates every scene and opens matching Studio board
     if (response.status() >= 400) failures.push(response.url())
   })
   await page.goto('/mekit/')
-  await page.getByRole('link', { name: '03 / SHIFT LINE 한 점의 색, 스트리트 감각' }).click()
+  await page.getByRole('link', { name: '03 / SHIFT LINE 원석과 간결한 잠금' }).click()
   await expect(page.locator('#shift-line')).toBeInViewport()
   await expect(page.locator('[data-shift-scene]')).toHaveCount(4)
-  await expect(page.getByRole('button', { name: 'Cobalt', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  )
-  await page.getByRole('button', { name: 'Lime', exact: true }).click()
-  await expect(page.getByRole('button', { name: 'Lime', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  )
+  await expect(page.getByRole('button', { name: 'Cobalt', exact: true })).toHaveCount(0)
   for (const image of await page.locator('[data-shift-scene] image').all()) {
-    await expect(image).toHaveAttribute('href', '/mekit/studio/images/07-shift-lime.png')
+    await expect(image).toHaveAttribute('href', '/mekit/studio/images/09-shift-lock.png')
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
-  await page.getByRole('link', { name: 'SHIFT Lime 무드보드' }).click()
-  await expect(page.locator('#board-title')).toHaveText('SHIFT / LIME')
+  await page.getByRole('link', { name: 'SHIFT Lock 무드보드' }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / LOCK')
   await expect(page.locator('#board-image')).toHaveJSProperty('complete', true)
   expect(
     await page.locator('#board-image').evaluate((img: HTMLImageElement) => img.naturalWidth),
   ).toBeGreaterThan(0)
   await page.reload()
-  await expect(page.locator('#board-title')).toHaveText('SHIFT / LIME')
-  await page.getByRole('button', { name: '이전 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / LOCK')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / SMOKE')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / COBALT')
+  await expect(page.locator('#board-type')).toHaveText('ARCHIVE / COLOUR STUDY')
   expect(failures).toEqual([])
 })

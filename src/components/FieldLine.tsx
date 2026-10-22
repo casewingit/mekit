@@ -37,7 +37,7 @@ export function LineSelector() {
         <small>02 / FIELD LINE</small>나무와 돌의 묵직함 <ArrowDown size={16} />
       </Link>
       <Link to="/#shift-line">
-        <small>03 / SHIFT LINE</small>한 점의 색, 스트리트 감각 <ArrowDown size={16} />
+        <small>03 / SHIFT LINE</small>원석과 간결한 잠금 <ArrowDown size={16} />
       </Link>
     </nav>
   )
