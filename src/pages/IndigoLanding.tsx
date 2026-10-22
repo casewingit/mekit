@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../indigo.css'
 import { FieldLine, LineSelector } from '../components/FieldLine'
 import { ShiftLine } from '../components/ShiftLine'
+import { RitualLine } from '../components/RitualLine'
 
 const studio = `${import.meta.env.BASE_URL}studio/`
 const original = `${studio}images/02-indigo-line.png`
@@ -206,6 +207,7 @@ export function IndigoLanding() {
 
       <FieldLine />
       <ShiftLine />
+      <RitualLine />
 
       <section className="indigo-notebook" aria-labelledby="notebook-title">
         <div className="indigo-wrap indigo-notebook-inner">
@@ -251,13 +253,13 @@ export function IndigoLanding() {
         </div>
         <div>
           <p>
-            INDIGO, FIELD, SHIFT는 개발 중인 세 가지 디자인 콘셉트입니다. 로프와 작은 금속, FIELD의
-            목재·원석을 검토하고 있으며, 소재·매듭 구조·잠금장치·착용감을 샘플로 확인한 뒤 판매
-            사양을 정합니다.
+            INDIGO, FIELD, SHIFT, RITUAL은 개발 중인 네 가지 디자인 콘셉트입니다. 로프와 작은 금속,
+            목재·원석과 구슬의 배열을 검토하고 있으며, 소재·매듭 구조·잠금장치·착용감을 샘플로
+            확인한 뒤 판매 사양을 정합니다.
           </p>
           <p className="indigo-fine">
-            모든 이미지는 AI 생성 시안입니다. 2mm는 설계 목표이며, 실제 규격·강도·금속 재질·한국
-            제조를 보증하지 않습니다. 아직 주문을 받지 않습니다.
+            모든 이미지는 AI 생성 시안입니다. 로프 2mm와 RITUAL 구슬 6mm는 설계 목표이며, 실제
+            규격·강도·금속 재질·한국 제조를 보증하지 않습니다. 아직 주문을 받지 않습니다.
           </p>
           <div className="indigo-stages" aria-label="개발 진행 상태">
             <span className="active">01 방향 선택</span>

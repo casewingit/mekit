@@ -1,0 +1,120 @@
+.ritual-line {
+  background: #e9e1d2;
+  color: #332b23;
+  padding: 65px 0;
+  scroll-margin-top: 20px;
+}
+.ritual-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #bfb29d;
+  padding-bottom: 24px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+.ritual-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  gap: 60px;
+  padding: 55px 0;
+}
+.ritual-copy h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 4.2vw, 62px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin: 22px 0 30px;
+}
+.ritual-copy h2 em {
+  font-weight: 400;
+}
+.ritual-copy .ritual-korean {
+  font-size: 24px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.ritual-copy > p:not(.indigo-eyebrow):not(.ritual-korean) {
+  font-size: 13px;
+  line-height: 1.95;
+  max-width: 390px;
+}
+.ritual-line [data-ritual-scene] {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.5;
+}
+.ritual-line figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-top: 12px;
+}
+.ritual-product {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ritual-materials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  padding: 45px 0;
+}
+.ritual-materials article > span {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.ritual-materials h3 {
+  font-family: Georgia, serif;
+  font-size: 29px;
+  font-weight: 400;
+  margin: 16px 0;
+}
+.ritual-materials p {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.ritual-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+.ritual-note {
+  font-size: 11px;
+  line-height: 1.9;
+  border-top: 1px solid #bfb29d;
+  margin-top: 35px;
+  padding-top: 25px;
+  max-width: 850px;
+  color: #655849;
+}
+@media (max-width: 700px) {
+  .ritual-line {
+    padding: 40px 0;
+  }
+  .ritual-heading {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+  .ritual-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 35px 0;
+  }
+  .ritual-copy h2 {
+    font-size: 40px;
+  }
+  .ritual-materials,
+  .ritual-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .ritual-materials {
+    padding: 35px 0;
+  }
+}

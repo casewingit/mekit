@@ -29,7 +29,7 @@ function FieldFrame({ scene }: { scene: keyof typeof frames }) {
 export function LineSelector() {
   return (
     <nav className="line-selector indigo-wrap" aria-label="제품 라인 탐색">
-      <span>ONE BRAND. THREE EXPRESSIONS.</span>
+      <span>ONE BRAND. FOUR EXPRESSIONS.</span>
       <Link to="/#indigo-story">
         <small>01 / INDIGO LINE</small>쪽빛의 단정함 <ArrowDown size={16} />
       </Link>
@@ -38,6 +38,9 @@ export function LineSelector() {
       </Link>
       <Link to="/#shift-line">
         <small>03 / SHIFT LINE</small>원석과 간결한 잠금 <ArrowDown size={16} />
+      </Link>
+      <Link to="/#ritual-line">
+        <small>04 / RITUAL LINE</small>목재와 원석의 리듬 <ArrowDown size={16} />
       </Link>
     </nav>
   )

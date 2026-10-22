@@ -36,6 +36,18 @@ export const boards = [
     tags: ['SHIFT 최신 탐색안', '자석 잠금 검토', '작은 원석 인레이'],
   },
   {
+    id: 'ritual-line', title: 'RITUAL LINE', korean: '손목을 감싸는 나무와 돌의 묵직함', type: 'PRODUCT LINE / CONCEPT',
+    image: 'images/10-ritual-line.png', prompt: 'prompts/10-ritual-line.txt',
+    alt: '짙은 목재와 스모키 쿼츠 구슬 팔찌의 전체·남성 손목 착용·소재 확대·무광 자석 잠금 생성 무드보드',
+    line: 'Quiet rhythm. Grounded presence.',
+    description: '손목 전체를 감싸는 목재 구슬, 앞쪽에 모은 어두운 스모키 쿼츠. 묵주·염주의 반복감에서 영감을 얻은 묵직한 네 번째 라인입니다.',
+    knot: '구슬을 내부 줄로 연결하고 뒤쪽 원통형 자석 잠금을 검토합니다. 특정 종교의 구슬 수·기도 방식이나 전통매듭 기법을 재현한 제품은 아닙니다.',
+    opinion: '2026.10.23 사용자의 강한 원석·목재 팔찌 요청을 반영했습니다. 목재 약 ⅔와 앞쪽 원석 한 구간으로 리듬을 만들고, 구슬 지름 약 6mm를 목표로 비율을 탐색합니다.',
+    check: '목재 수종·표면 처리·수분 반응, 원석 처리·구멍·파손, 내부 줄과 구멍의 적합성, 자석 잠금의 이탈·끝단 고정을 확인해야 합니다. 6mm는 목표이며 이미지의 크기·구슬 수·강도는 확정 사양이 아닙니다.',
+    colors: [['Dark wood', '#4c3526'], ['Smoky quartz', '#51493d'], ['Olive canvas', '#57533d']],
+    tags: ['네 번째 상품 라인', '목재 + 원석 구슬', '자석 잠금 검토'],
+  },
+  {
     id: 'shift-smoke', title: 'SHIFT / SMOKE', korean: '원석 배열의 이전 탐색', type: 'ARCHIVE / STONE STUDY',
     image: 'images/08-shift-smoke.png', prompt: 'prompts/08-shift-smoke.txt',
     alt: '검은 로프 위 각진 스모키 쿼츠 세 개를 배치한 전체·착용·확대·소재 생성 무드보드',

@@ -114,9 +114,41 @@ test('Shift shows the latest magnetic study and preserves earlier concepts in St
   await page.reload()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / LOCK')
   await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('RITUAL LINE')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / SMOKE')
   await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / COBALT')
   await expect(page.locator('#board-type')).toHaveText('ARCHIVE / COLOUR STUDY')
+  expect(failures).toEqual([])
+})
+
+test('Ritual full-bead line connects its four scenes to a persistent Studio board', async ({
+  page,
+}) => {
+  const failures: string[] = []
+  page.on('pageerror', (error) => failures.push(error.message))
+  page.on('response', (response) => {
+    if (response.status() >= 400) failures.push(response.url())
+  })
+  await page.goto('/mekit/')
+  await page.getByRole('link', { name: '04 / RITUAL LINE 목재와 원석의 리듬' }).click()
+  await expect(page.locator('#ritual-line')).toBeInViewport()
+  await expect(page.locator('[data-ritual-scene]')).toHaveCount(4)
+  await expect(
+    page.getByRole('heading', { name: 'Quiet rhythm. Grounded presence.' }),
+  ).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.getByRole('link', { name: 'RITUAL LINE 무드보드' }).click()
+  await expect(page).toHaveURL(/studio\/#ritual-line$/)
+  await expect(page.locator('#board-title')).toHaveText('RITUAL LINE')
+  await expect(page.locator('#board-image')).toHaveJSProperty('complete', true)
+  expect(
+    await page.locator('#board-image').evaluate((img: HTMLImageElement) => img.naturalWidth),
+  ).toBeGreaterThan(0)
+  await page.reload()
+  await expect(page.locator('#board-title')).toHaveText('RITUAL LINE')
+  await page.getByRole('button', { name: '이전 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('SHIFT / LOCK')
   expect(failures).toEqual([])
 })
