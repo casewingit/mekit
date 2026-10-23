@@ -84,7 +84,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 26px;
 }
-.ritual-note {
+.ritual-line .ritual-note {
   font-size: 11px;
   line-height: 1.9;
   border-top: 1px solid #bfb29d;
@@ -116,5 +116,113 @@
   }
   .ritual-materials {
     padding: 35px 0;
+  }
+}
+
+.ritual-series {
+  border-top: 1px solid #bfb29d;
+  margin-top: 50px;
+  padding-top: 44px;
+  scroll-margin-top: 24px;
+}
+.ritual-series-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 28px;
+}
+.ritual-series-heading h3 {
+  font:
+    400 clamp(28px, 3vw, 40px)/1.15 Georgia,
+    serif;
+  margin: 16px 0 0;
+  letter-spacing: -0.03em;
+}
+.ritual-series-heading > p {
+  font-size: 11px;
+  line-height: 1.9;
+}
+.ritual-series-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.ritual-series-grid article {
+  min-width: 0;
+}
+.ritual-series-grid [data-ritual-variant] {
+  width: 100%;
+  display: block;
+  aspect-ratio: 760/334;
+}
+.ritual-series-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 22px;
+}
+.ritual-series-name h4 {
+  font:
+    400 29px/1 Georgia,
+    serif;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+.ritual-series-grid p {
+  font-size: 12px;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+.ritual-series-grid .ritual-series-material {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #655849;
+}
+.ritual-price {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding: 24px 0;
+  border-top: 1px solid #bfb29d;
+  border-bottom: 1px solid #bfb29d;
+}
+.ritual-price > span {
+  font-size: 11px;
+}
+.ritual-price strong {
+  font:
+    400 30px/1 Georgia,
+    serif;
+}
+.ritual-price p {
+  font-size: 10px;
+  line-height: 1.9;
+  margin-left: auto;
+}
+.ritual-line .ritual-durability {
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 790px;
+  margin-top: 24px;
+}
+@media (max-width: 700px) {
+  .ritual-series-heading {
+    flex-direction: column;
+    align-items: start;
+    gap: 18px;
+  }
+  .ritual-series-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ritual-price {
+    gap: 18px;
+  }
+  .ritual-price p {
+    flex-basis: 100%;
+    margin-left: 0;
   }
 }

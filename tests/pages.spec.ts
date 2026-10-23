@@ -116,6 +116,10 @@ test('Shift shows the latest magnetic study and preserves earlier concepts in St
   await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('RITUAL LINE')
   await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('RITUAL / ONYX')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
+  await expect(page.locator('#board-title')).toHaveText('RITUAL / EMBER')
+  await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / SMOKE')
   await page.getByRole('button', { name: '다음 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / COBALT')
@@ -151,4 +155,33 @@ test('Ritual full-bead line connects its four scenes to a persistent Studio boar
   await page.getByRole('button', { name: '이전 무드보드', exact: true }).click()
   await expect(page.locator('#board-title')).toHaveText('SHIFT / LOCK')
   expect(failures).toEqual([])
+})
+
+test('Ritual series links all three materials and labels pricing as a target', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', (e) => errors.push(e.message))
+  page.on('response', (r) => {
+    if (r.status() >= 400) errors.push(r.url())
+  })
+  await page.goto('/mekit/#/#ritual-series')
+  await expect(page.locator('[data-ritual-variant]')).toHaveCount(3)
+  await expect(page.locator('.ritual-price')).toContainText('₩69,000')
+  await expect(page.locator('.ritual-price')).toContainText('아직 판매하지 않습니다')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  for (const [name, title] of [
+    ['SMOKE', 'RITUAL LINE'],
+    ['ONYX', 'RITUAL / ONYX'],
+    ['EMBER', 'RITUAL / EMBER'],
+  ]) {
+    await page.getByRole('link', { name: `RITUAL ${name} 시안 보기` }).click()
+    await expect(page.locator('#board-title')).toHaveText(title)
+    await expect(page.locator('#board-image')).toHaveJSProperty('complete', true)
+    expect(
+      await page.locator('#board-image').evaluate((img: HTMLImageElement) => img.naturalWidth),
+    ).toBeGreaterThan(0)
+    await page.reload()
+    await expect(page.locator('#board-title')).toHaveText(title)
+    await page.goto('/mekit/#/#ritual-series')
+  }
+  expect(errors).toEqual([])
 })
